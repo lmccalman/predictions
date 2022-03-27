@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "predictions"
+version = "0.1.0"
+description = ""
+authors = ["Lachlan McCalman <lachlan@mccalman.info>"]
+
+[tool.poetry.dependencies]
+python = ">=3.10,<3.11"
+scipy = "^1.8.0"
+numpy = "^1.22.3"
+pandas = "^1.4.1"
+openpyxl = "^3.0.9"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.2"
+jedi = "^0.18.1"
+neovim = "^0.3.1"
+ipython = "^8.1.1"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
