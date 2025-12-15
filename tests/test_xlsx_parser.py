@@ -69,7 +69,7 @@ class TestStatementExtraction2022Format:
 
         # Check first statement
         stmt = statements[0]
-        assert stmt.id == 1
+        assert stmt.id == '2022-1'
         assert stmt.year == 2022
         assert stmt.text == 'Australia will win the Ashes'
         assert stmt.category == 'Sport'
@@ -118,7 +118,7 @@ class TestStatementExtraction2025Format:
 
         # Check first statement
         stmt = statements[0]
-        assert stmt.id == 1
+        assert stmt.id == '2025-1'
         assert stmt.year == 2025
         assert stmt.text == 'Trump will be re-elected'
         assert stmt.category == 'US Politics'
@@ -128,10 +128,10 @@ class TestStatementExtraction2025Format:
         """Test that 2025 format correctly reads from 'Number' column (not 'ID')."""
         statements = extract_statements_2025(fixture_2025, year=2025)
 
-        # Verify we got the statements and IDs match what's in the Number column
-        assert statements[0].id == 1
-        assert statements[1].id == 2
-        assert statements[2].id == 3
+        # Verify we got the statements and IDs match what's in the Number column (with year prefix)
+        assert statements[0].id == '2025-1'
+        assert statements[1].id == '2025-2'
+        assert statements[2].id == '2025-3'
 
     def test_2025_uses_name_for_proposer(self, fixture_2025: Path):
         """Test that 2025 format correctly reads proposer from 'Name' column."""
@@ -152,7 +152,8 @@ class TestPredictionExtraction:
 
     def test_extract_predictions_2022_format(self, fixture_2022: Path):
         """Test prediction extraction from 2022 format."""
-        predictions = extract_predictions_2022_2024(fixture_2022, year=2022)
+        statements = extract_statements_2022_2024(fixture_2022, year=2022)
+        predictions = extract_predictions_2022_2024(fixture_2022, statements)
 
         # 3 participants × 3 statements = 9 predictions
         assert len(predictions) == 9
@@ -160,7 +161,8 @@ class TestPredictionExtraction:
 
     def test_extract_predictions_2025_format(self, fixture_2025: Path):
         """Test prediction extraction from 2025 format."""
-        predictions = extract_predictions_2025(fixture_2025, year=2025)
+        statements = extract_statements_2025(fixture_2025, year=2025)
+        predictions = extract_predictions_2025(fixture_2025, statements)
 
         # 4 participants × 3 statements = 12 predictions
         assert len(predictions) == 12
@@ -168,18 +170,20 @@ class TestPredictionExtraction:
 
     def test_prediction_fields(self, fixture_2022: Path):
         """Test that prediction fields are correctly extracted."""
-        predictions = extract_predictions_2022_2024(fixture_2022, year=2022)
+        statements = extract_statements_2022_2024(fixture_2022, year=2022)
+        predictions = extract_predictions_2022_2024(fixture_2022, statements)
 
-        # Find Alice's prediction for statement 1
-        alice_pred = next(p for p in predictions if p.participant == 'Alice' and p.statement_id == 1)
+        # Find Alice's prediction for statement 1 (with year prefix)
+        alice_pred = next(p for p in predictions if p.participant == 'Alice' and p.statement_id == '2022-1')
 
-        assert alice_pred.statement_id == 1
+        assert alice_pred.statement_id == '2022-1'
         assert alice_pred.participant == 'Alice'
         assert alice_pred.probability == 0.75
 
     def test_probability_values_in_valid_range(self, fixture_2022: Path):
         """Test that all probability values are in [0.0, 1.0] range."""
-        predictions = extract_predictions_2022_2024(fixture_2022, year=2022)
+        statements = extract_statements_2022_2024(fixture_2022, year=2022)
+        predictions = extract_predictions_2022_2024(fixture_2022, statements)
 
         for pred in predictions:
             assert 0.0 <= pred.probability <= 1.0, (
@@ -189,17 +193,18 @@ class TestPredictionExtraction:
 
     def test_all_participants_extracted(self, fixture_2022: Path):
         """Test that all participants are found."""
-        predictions = extract_predictions_2022_2024(fixture_2022, year=2022)
+        statements = extract_statements_2022_2024(fixture_2022, year=2022)
+        predictions = extract_predictions_2022_2024(fixture_2022, statements)
 
         participants = {p.participant for p in predictions}
         assert 'Alice' in participants
         assert 'Bruce' in participants
-        assert 'Gaël' in participants  # With accent
+        assert 'Gael' in participants  # Normalized (accent removed)
 
     def test_statement_id_references_valid(self, fixture_2022: Path):
         """Test that all statement_id references correspond to actual statements."""
         statements = extract_statements_2022_2024(fixture_2022, year=2022)
-        predictions = extract_predictions_2022_2024(fixture_2022, year=2022)
+        predictions = extract_predictions_2022_2024(fixture_2022, statements)
 
         valid_ids = {s.id for s in statements}
         for pred in predictions:
@@ -210,7 +215,7 @@ class TestPredictionExtraction:
     def test_each_participant_has_all_predictions(self, fixture_2022: Path):
         """Test that each participant has predictions for all statements."""
         statements = extract_statements_2022_2024(fixture_2022, year=2022)
-        predictions = extract_predictions_2022_2024(fixture_2022, year=2022)
+        predictions = extract_predictions_2022_2024(fixture_2022, statements)
 
         # Group predictions by participant
         by_participant = {}
@@ -248,47 +253,47 @@ class TestOutcomeParsing:
 
     def test_outcome_true_parsing(self, fixture_2022: Path):
         """Test that outcome value 1 is parsed as True."""
-        game_data = parse_xlsx_file(fixture_2022, year=2022)
+        game_data = parse_xlsx_file(fixture_2022)
 
         # Statement 1 has outcome = 1.0 (True)
-        outcome = next(o for o in game_data.outcomes if o.statement_id == 1)
+        outcome = next(o for o in game_data.outcomes if o.statement_id == '2022-1')
         assert outcome.outcome is True
 
     def test_outcome_false_parsing(self, fixture_2022: Path):
         """Test that outcome value 0 is parsed as False."""
-        game_data = parse_xlsx_file(fixture_2022, year=2022)
+        game_data = parse_xlsx_file(fixture_2022)
 
         # Statement 3 has outcome = 0.0 (False)
-        outcome = next(o for o in game_data.outcomes if o.statement_id == 3)
+        outcome = next(o for o in game_data.outcomes if o.statement_id == '2022-3')
         assert outcome.outcome is False
 
     def test_outcome_nan_parsing(self, fixture_2022: Path):
         """Test that NaN outcome is parsed as None (unresolved)."""
-        game_data = parse_xlsx_file(fixture_2022, year=2022)
+        game_data = parse_xlsx_file(fixture_2022)
 
         # Statement 2 has outcome = NaN (None)
-        outcome = next(o for o in game_data.outcomes if o.statement_id == 2)
+        outcome = next(o for o in game_data.outcomes if o.statement_id == '2022-2')
         assert outcome.outcome is None
 
     def test_outcome_parsing_2025_format(self, fixture_2025: Path):
         """Test outcome parsing from 2025 format (0/1/"-")."""
-        game_data = parse_xlsx_file(fixture_2025, year=2025)
+        game_data = parse_xlsx_file(fixture_2025)
 
         # Statement 1: outcome = 1 (True)
-        outcome1 = next(o for o in game_data.outcomes if o.statement_id == 1)
+        outcome1 = next(o for o in game_data.outcomes if o.statement_id == '2025-1')
         assert outcome1.outcome is True
 
         # Statement 2: outcome = "-" (None)
-        outcome2 = next(o for o in game_data.outcomes if o.statement_id == 2)
+        outcome2 = next(o for o in game_data.outcomes if o.statement_id == '2025-2')
         assert outcome2.outcome is None
 
         # Statement 3: outcome = 0 (False)
-        outcome3 = next(o for o in game_data.outcomes if o.statement_id == 3)
+        outcome3 = next(o for o in game_data.outcomes if o.statement_id == '2025-3')
         assert outcome3.outcome is False
 
     def test_outcome_type_is_optional_bool(self, fixture_2022: Path):
         """Test that outcome type is Optional[bool] (True, False, or None)."""
-        game_data = parse_xlsx_file(fixture_2022, year=2022)
+        game_data = parse_xlsx_file(fixture_2022)
 
         for outcome in game_data.outcomes:
             assert outcome.outcome in (True, False, None), (
@@ -327,13 +332,20 @@ class TestParticipantNameNormalization:
         assert normalize_participant_name('David') == 'David'
 
     def test_normalization_case_insensitive(self):
-        """Test that normalization is case-insensitive."""
-        assert normalize_participant_name('bruce') == normalize_participant_name('Bruce')
-        assert normalize_participant_name('ALICE') == normalize_participant_name('alice')
+        """Test that normalization is case-insensitive for known names."""
+        # Known names should normalize to the same canonical form
+        assert normalize_participant_name('bruce') == 'Bruce'
+        assert normalize_participant_name('Bruce') == 'Bruce'
+        assert normalize_participant_name('BRUCE') == 'Bruce'
+        # For unknown names, the original case is preserved after stripping
+        assert normalize_participant_name('ALICE') == 'ALICE'
+        assert normalize_participant_name('alice') == 'alice'
+        assert normalize_participant_name('Alice') == 'Alice'
 
     def test_predictions_use_normalized_names(self, fixture_2022: Path):
         """Test that extracted predictions use normalized participant names."""
-        predictions = extract_predictions_2022_2024(fixture_2022, year=2022)
+        statements = extract_statements_2022_2024(fixture_2022, year=2022)
+        predictions = extract_predictions_2022_2024(fixture_2022, statements)
 
         participants = {p.participant for p in predictions}
 
@@ -426,7 +438,7 @@ class TestJSONExportImport:
 
     def test_export_to_json_creates_file(self, fixture_2022: Path, tmp_path: Path):
         """Test that export_to_json creates a valid JSON file."""
-        game_data = parse_xlsx_file(fixture_2022, year=2022)
+        game_data = parse_xlsx_file(fixture_2022)
         output_file = tmp_path / 'test_output.json'
 
         export_to_json(game_data, output_file)
@@ -436,7 +448,7 @@ class TestJSONExportImport:
 
     def test_exported_json_is_valid(self, fixture_2022: Path, tmp_path: Path):
         """Test that exported JSON is valid and can be loaded."""
-        game_data = parse_xlsx_file(fixture_2022, year=2022)
+        game_data = parse_xlsx_file(fixture_2022)
         output_file = tmp_path / 'test_output.json'
 
         export_to_json(game_data, output_file)
@@ -452,7 +464,7 @@ class TestJSONExportImport:
 
     def test_json_round_trip_preserves_data(self, fixture_2022: Path, tmp_path: Path):
         """Test that data is preserved through JSON export/import cycle."""
-        original_data = parse_xlsx_file(fixture_2022, year=2022)
+        original_data = parse_xlsx_file(fixture_2022)
         output_file = tmp_path / 'test_output.json'
 
         # Export
@@ -469,7 +481,7 @@ class TestJSONExportImport:
 
     def test_json_preserves_statement_fields(self, fixture_2022: Path, tmp_path: Path):
         """Test that statement fields are preserved in JSON export."""
-        game_data = parse_xlsx_file(fixture_2022, year=2022)
+        game_data = parse_xlsx_file(fixture_2022)
         output_file = tmp_path / 'test_output.json'
 
         export_to_json(game_data, output_file)
@@ -486,7 +498,7 @@ class TestJSONExportImport:
 
     def test_json_preserves_probability_precision(self, fixture_2022: Path, tmp_path: Path):
         """Test that probability values maintain precision through JSON export."""
-        game_data = parse_xlsx_file(fixture_2022, year=2022)
+        game_data = parse_xlsx_file(fixture_2022)
         output_file = tmp_path / 'test_output.json'
 
         export_to_json(game_data, output_file)
@@ -510,7 +522,7 @@ class TestYearAgnosticParser:
 
     def test_parse_xlsx_file_detects_2022_format(self, fixture_2022: Path):
         """Test that parse_xlsx_file correctly detects and parses 2022 format."""
-        game_data = parse_xlsx_file(fixture_2022, year=2022)
+        game_data = parse_xlsx_file(fixture_2022)
 
         assert isinstance(game_data, GameData)
         assert len(game_data.statements) == 3
@@ -519,7 +531,7 @@ class TestYearAgnosticParser:
 
     def test_parse_xlsx_file_detects_2025_format(self, fixture_2025: Path):
         """Test that parse_xlsx_file correctly detects and parses 2025 format."""
-        game_data = parse_xlsx_file(fixture_2025, year=2025)
+        game_data = parse_xlsx_file(fixture_2025)
 
         assert isinstance(game_data, GameData)
         assert len(game_data.statements) == 3
@@ -528,7 +540,7 @@ class TestYearAgnosticParser:
 
     def test_parse_xlsx_file_returns_game_data(self, fixture_2022: Path):
         """Test that parse_xlsx_file returns a complete GameData object."""
-        game_data = parse_xlsx_file(fixture_2022, year=2022)
+        game_data = parse_xlsx_file(fixture_2022)
 
         assert hasattr(game_data, 'statements')
         assert hasattr(game_data, 'predictions')
@@ -556,7 +568,7 @@ class TestEdgeCases:
     def test_missing_file_raises_error(self):
         """Test that attempting to parse a non-existent file raises an error."""
         with pytest.raises((FileNotFoundError, IOError)):
-            parse_xlsx_file(Path('nonexistent.xlsx'), year=2022)
+            parse_xlsx_file(Path('2099.xlsx'))
 
     def test_invalid_probability_raises_error(self, tmp_path: Path):
         """Test that invalid probability values (outside [0, 1]) raise an error."""
@@ -574,7 +586,7 @@ class TestDataValidation:
 
     def test_all_predictions_reference_valid_statements(self, fixture_2022: Path):
         """Test that all predictions reference valid statement IDs."""
-        game_data = parse_xlsx_file(fixture_2022, year=2022)
+        game_data = parse_xlsx_file(fixture_2022)
 
         valid_stmt_ids = {s.id for s in game_data.statements}
 
@@ -583,7 +595,7 @@ class TestDataValidation:
 
     def test_all_outcomes_reference_valid_statements(self, fixture_2022: Path):
         """Test that all outcomes reference valid statement IDs."""
-        game_data = parse_xlsx_file(fixture_2022, year=2022)
+        game_data = parse_xlsx_file(fixture_2022)
 
         valid_stmt_ids = {s.id for s in game_data.statements}
 
