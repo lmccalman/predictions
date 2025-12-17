@@ -1,50 +1,29 @@
 <script>
-  import svelteLogo from './assets/svelte.svg'
-  import viteLogo from '/vite.svg'
-  import Counter from './lib/Counter.svelte'
-  import ExamplePlot from './lib/ExamplePlot.svelte'
+  import TabBar from './lib/TabBar.svelte'
+  import ScoresOverTime from './views/ScoresOverTime.svelte'
+  import CategoryBreakdown from './views/CategoryBreakdown.svelte'
+  import PlayerComparison from './views/PlayerComparison.svelte'
+  import ConfidenceCalibration from './views/ConfidenceCalibration.svelte'
+  import OwnVsOthers from './views/OwnVsOthers.svelte'
+
+  const tabs = [
+    { label: 'Scores', component: ScoresOverTime },
+    { label: 'Categories', component: CategoryBreakdown },
+    { label: 'Players', component: PlayerComparison },
+    { label: 'Calibration', component: ConfidenceCalibration },
+    { label: 'Own vs Others', component: OwnVsOthers },
+  ]
+
+  let activeTab = $state(0)
 </script>
 
-<main>
-  <div>
-    <a href="https://vite.dev" target="_blank" rel="noreferrer">
-      <img src={viteLogo} class="logo" alt="Vite Logo" />
-    </a>
-    <a href="https://svelte.dev" target="_blank" rel="noreferrer">
-      <img src={svelteLogo} class="logo svelte" alt="Svelte Logo" />
-    </a>
-  </div>
-  <h1>Vite + Svelte</h1>
+<div class="flex min-h-screen bg-panel-dark">
+  <TabBar {tabs} {activeTab} onTabChange={(i) => activeTab = i} />
 
-  <div class="card">
-    <Counter />
-  </div>
-
-  <ExamplePlot />
-
-  <p>
-    Check out <a href="https://github.com/sveltejs/kit#readme" target="_blank" rel="noreferrer">SvelteKit</a>, the official Svelte app framework powered by Vite!
-  </p>
-
-  <p class="read-the-docs">
-    Click on the Vite and Svelte logos to learn more
-  </p>
-</main>
-
-<style>
-  .logo {
-    height: 6em;
-    padding: 1.5em;
-    will-change: filter;
-    transition: filter 300ms;
-  }
-  .logo:hover {
-    filter: drop-shadow(0 0 2em #646cffaa);
-  }
-  .logo.svelte:hover {
-    filter: drop-shadow(0 0 2em #ff3e00aa);
-  }
-  .read-the-docs {
-    color: #888;
-  }
-</style>
+  <main class="flex-1 p-6 overflow-auto">
+    {#key activeTab}
+      {@const ActiveComponent = tabs[activeTab].component}
+      <ActiveComponent />
+    {/key}
+  </main>
+</div>
