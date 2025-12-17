@@ -13,32 +13,46 @@ The goal is to create an interactive website for exploring game progress and sta
 - Comparative analyses between players
 - Performance on own predictions vs. others' predictions
 
-Current status: Initial planning phases. Raw data is in xlsx spreadsheets in `input/` directory (2022-2025) that need ingestion into consistent data format.
+Current status: Data ingestion complete, frontend development in progress. Raw data in xlsx spreadsheets (`input/` directory, 2022-2025) is parsed into JSON format for the web frontend.
 
 ## Technology Stack
+
+### Backend (Python)
 
 - **uv**: Environment management
 - **pytest**: Unit tests
 - **ruff**: Automatic formatting
 - **basedpyright**: Linting and static analysis
 - **click**: Command-line argument processing
+- **pandas/openpyxl**: Excel file parsing
+
+### Frontend (JavaScript/Svelte)
+
+- **Vite**: Build tool and dev server
+- **Svelte 5**: UI framework
+- **Observable Plot**: Data visualisation
+- **Tailwind CSS**: Styling (v4)
+
+## Coding Style
+
+See style guides for detailed coding standards:
+- **[PYTHON_STYLE.md](PYTHON_STYLE.md)**: Python coding standards
+- **[JAVASCRIPT_STYLE.md](JAVASCRIPT_STYLE.md)**: JavaScript/Svelte coding standards
 
 ## Common Commands
 
-### Environment Setup
+### Backend Setup and Development
+
 ```bash
+# Environment setup
 uv sync              # Install dependencies
 uv sync --dev        # Install with dev dependencies
-```
 
-### Running the Application
-```bash
+# Running the application
 uv run python main.py              # Run main script
 uv run python -m predictions       # Run as module (when structured)
-```
 
-### Development Tools
-```bash
+# Development tools
 uv run ruff format .               # Format code
 uv run ruff check .                # Lint code
 uv run basedpyright                # Type checking
@@ -47,16 +61,34 @@ uv run pytest path/to/test.py      # Run single test file
 uv run pytest -k test_name         # Run specific test by name
 ```
 
+### Frontend Development
+
+```bash
+cd predictions-frontend
+
+# Install dependencies
+npm install
+
+# Development
+npm run dev          # Start dev server (usually http://localhost:5173)
+npm run build        # Build for production
+npm run preview      # Preview production build
+```
+
 ## Architecture
 
-### Data Ingestion (Current Focus)
+### Data Ingestion (Backend)
 
-The ingestion component is a Python script that reads xlsx files from `input/` directory and extracts:
-1. Questions (true/false statements with categories)
-2. Predictions (probabilities assigned by each family member)
-3. Results (actual outcomes resolved by judging date)
+Located in `predictions/parser/`, the ingestion component reads xlsx files from `input/` directory and extracts:
+1. **Statements**: True/false statements with categories, proposers, and IDs
+2. **Predictions**: Probabilities (0.0-1.0) assigned by each family member
+3. **Outcomes**: Actual results (True/False/Unresolved) for each statement
 
-Output: Consistent data format suitable for web hosting and interactive analysis
+The parser handles multiple xlsx formats (2022-2024 legacy format and 2025+ current format) and exports to JSON for frontend consumption.
+
+Key files:
+- `predictions/parser/xlsx_parser.py`: Main parsing logic
+- `main.py`: CLI entry point for parsing
 
 ### Scoring Algorithm
 
@@ -66,6 +98,21 @@ Output: Consistent data format suitable for web hosting and interactive analysis
 - Scores update as events resolve throughout the year
 - Final resolution on Christmas Eve
 
-### Web Frontend (Future)
+### Web Frontend
 
-Technology not yet decided. Will host interactive analyses and statistics for family access.
+Located in `predictions-frontend/`, the frontend is built with:
+- **Vite + Svelte 5**: Fast, reactive UI framework
+- **Observable Plot**: Declarative data visualisation library for charts and graphs
+- **Tailwind CSS v4**: Utility-first styling (use Tailwind classes, not CSS properties)
+
+The frontend consumes JSON data from the backend parser and provides interactive visualisations for:
+- Player performance over time
+- Category analysis
+- Comparative statistics
+- Confidence calibration
+
+Key structure:
+- `src/App.svelte`: Main application component
+- `src/lib/`: Reusable Svelte components
+- `src/utils/`: JavaScript utility functions (future)
+- Public data served from backend JSON output
