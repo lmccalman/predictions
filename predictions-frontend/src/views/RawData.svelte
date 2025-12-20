@@ -4,6 +4,8 @@
   import { dataReady, gameData, years, players, playerColors } from '../lib/gameDataStore.svelte.js'
 
   let selectedYear = $state(null)
+  let selectedCategory = $state(null) // null means "All"
+  let selectedProposer = $state(null) // null means "All"
   let selectedPlayers = $state([...players])
   let showScores = $state(false)
   let loading = $state(true)
@@ -22,11 +24,31 @@
     })
   })
 
+  // Get unique categories and proposers from the data
+  const categories = $derived.by(() => {
+    if (!gameData) return []
+    return [...new Set(gameData.array('category'))].filter(c => c).sort()
+  })
+
+  const proposers = $derived.by(() => {
+    if (!gameData) return []
+    return [...new Set(gameData.array('proposer'))].filter(p => p).sort()
+  })
+
   const filteredData = $derived.by(() => {
     if (!gameData || !selectedYear) return []
 
-    const yearFiltered = gameData.filter(aq.escape(d => d.year === selectedYear))
-    return yearFiltered.objects()
+    let filtered = gameData.filter(aq.escape(d => d.year === selectedYear))
+
+    if (selectedCategory) {
+      filtered = filtered.filter(aq.escape(d => d.category === selectedCategory))
+    }
+
+    if (selectedProposer) {
+      filtered = filtered.filter(aq.escape(d => d.proposer === selectedProposer))
+    }
+
+    return filtered.objects()
   })
 
   function togglePlayer(player) {
@@ -97,6 +119,32 @@
             >
               {#each years as year}
                 <option value={year}>{year}</option>
+              {/each}
+            </select>
+          </ControlGroup>
+
+          <ControlGroup label="Category">
+            <select
+              bind:value={selectedCategory}
+              class="bg-panel-inset border border-panel-border rounded px-3 py-2 text-text-primary
+                focus:border-phosphor-green focus:outline-none focus:ring-2 focus:ring-phosphor-green/20"
+            >
+              <option value={null}>All</option>
+              {#each categories as category}
+                <option value={category}>{category}</option>
+              {/each}
+            </select>
+          </ControlGroup>
+
+          <ControlGroup label="Proposer">
+            <select
+              bind:value={selectedProposer}
+              class="bg-panel-inset border border-panel-border rounded px-3 py-2 text-text-primary
+                focus:border-phosphor-green focus:outline-none focus:ring-2 focus:ring-phosphor-green/20"
+            >
+              <option value={null}>All</option>
+              {#each proposers as proposer}
+                <option value={proposer}>{proposer}</option>
               {/each}
             </select>
           </ControlGroup>
@@ -204,7 +252,7 @@
     </div>
 
     <div class="text-text-dim text-sm">
-      Showing {filteredData.length} statements for {selectedYear}
+      Showing {filteredData.length} statements for {selectedYear}{#if selectedCategory} in {selectedCategory}{/if}{#if selectedProposer} by {selectedProposer}{/if}
     </div>
   {/if}
 </div>
