@@ -859,3 +859,86 @@ def export_to_csv(game_data: GameData, output_path: Path) -> None:
         writer = csv.DictWriter(f, fieldnames=columns)
         writer.writeheader()
         writer.writerows(rows)
+
+
+def export_to_arrow(game_data: GameData, output_path: Path) -> None:
+    """
+    Export GameData to Apache Arrow format.
+
+    Creates a denormalized Arrow file where each row is a statement with its outcome
+    and all participants' predictions as columns. Compatible with arquero library.
+
+    Args:
+        game_data: The GameData object to export
+        output_path: Path where the Arrow file should be written
+
+    Raises:
+        IOError: If the file cannot be written
+    """
+    import pyarrow as pa
+    import pyarrow.feather as feather
+
+    # Create indices for quick lookups
+    predictions_by_stmt = {}
+    for pred in game_data.predictions:
+        if pred.statement_id not in predictions_by_stmt:
+            predictions_by_stmt[pred.statement_id] = {}
+        predictions_by_stmt[pred.statement_id][pred.participant] = pred.probability
+
+    outcomes_by_stmt = {outcome.statement_id: outcome for outcome in game_data.outcomes}
+
+    # Get all unique participants (sorted for consistent column order)
+    participants = sorted(
+        {pred.participant for pred in game_data.predictions}
+    )
+
+    # Prepare data as lists for each column
+    data = {
+        "id": [],
+        "year": [],
+        "text": [],
+        "category": [],
+        "proposer": [],
+        "outcome": [],
+        "outcome_date": [],
+    }
+    for participant in participants:
+        data[participant] = []
+
+    # Build rows
+    for stmt in game_data.statements:
+        data["id"].append(stmt.id)
+        data["year"].append(stmt.year)
+        data["text"].append(stmt.text)
+        data["category"].append(stmt.category)
+        data["proposer"].append(stmt.proposer)
+
+        # Add outcome
+        outcome = outcomes_by_stmt.get(stmt.id)
+        if outcome and outcome.outcome is not None:
+            data["outcome"].append(outcome.outcome)
+        else:
+            data["outcome"].append(None)
+
+        if outcome and outcome.date:
+            data["outcome_date"].append(outcome.date.isoformat())
+        else:
+            data["outcome_date"].append(None)
+
+        # Add predictions for each participant
+        stmt_predictions = predictions_by_stmt.get(stmt.id, {})
+        for participant in participants:
+            prob = stmt_predictions.get(participant)
+            data[participant].append(prob if prob is not None else None)
+
+    # Convert to pandas DataFrame for easier Arrow conversion
+    df = pd.DataFrame(data)
+
+    # Ensure output directory exists
+    output_path = Path(output_path)
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+
+    # Write to Arrow format using Feather V2 (which is IPC format)
+    # Disable compression for browser compatibility - the JS Arrow library
+    # used by arquero doesn't support LZ4/ZSTD record batch decompression
+    feather.write_feather(df, output_path, compression='uncompressed')

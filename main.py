@@ -5,7 +5,7 @@ from pathlib import Path
 
 import click
 
-from predictions.parser import export_to_csv, parse_all_years
+from predictions.parser import export_to_arrow, export_to_csv, parse_all_years
 
 
 @click.command()
@@ -23,8 +23,15 @@ from predictions.parser import export_to_csv, parse_all_years
     default="output/game_data.csv",
     help="Output CSV file path",
 )
-def main(input_dir: Path, output: Path):
-    """Parse prediction game xlsx files and export to CSV."""
+@click.option(
+    "--arrow-output",
+    "-a",
+    type=click.Path(path_type=Path),
+    default="predictions-frontend/public/game_data.arrow",
+    help="Output Arrow file path for frontend",
+)
+def main(input_dir: Path, output: Path, arrow_output: Path):
+    """Parse prediction game xlsx files and export to CSV and Arrow formats."""
     click.echo(f"Reading xlsx files from: {input_dir}")
 
     try:
@@ -42,6 +49,10 @@ def main(input_dir: Path, output: Path):
         # Export to CSV
         export_to_csv(game_data, output)
         click.echo(f"✓ Exported data to: {output}")
+
+        # Export to Arrow
+        export_to_arrow(game_data, arrow_output)
+        click.echo(f"✓ Exported data to: {arrow_output}")
 
     except Exception as e:
         click.echo(f"✗ Error: {e}", err=True)

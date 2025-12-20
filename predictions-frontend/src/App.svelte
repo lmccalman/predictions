@@ -5,8 +5,10 @@
   import PlayerComparison from './views/PlayerComparison.svelte'
   import ConfidenceCalibration from './views/ConfidenceCalibration.svelte'
   import OwnVsOthers from './views/OwnVsOthers.svelte'
+  import RawData from './views/RawData.svelte'
 
   const tabs = [
+    { label: 'Raw Data', component: RawData },
     { label: 'Scores', component: ScoresOverTime },
     { label: 'Categories', component: CategoryBreakdown },
     { label: 'Players', component: PlayerComparison },
