@@ -5,6 +5,7 @@
 
   let selectedYear = $state(null)
   let selectedPlayers = $state([...players])
+  let showScores = $state(false)
   let loading = $state(true)
   let error = $state(null)
 
@@ -49,6 +50,26 @@
     return (value * 100).toFixed(0) + '%'
   }
 
+  function calculateScore(prediction, outcome) {
+    if (prediction === null || prediction === undefined || isNaN(prediction)) return null
+    if (outcome === null || outcome === undefined) return null
+
+    // Probability assigned to the actual outcome
+    const pAssigned = outcome ? prediction : 1 - prediction
+    // Score = log(p_assigned) - log(0.5)
+    return Math.log(pAssigned) - Math.log(0.5)
+  }
+
+  function formatScore(prediction, outcome) {
+    const score = calculateScore(prediction, outcome)
+    if (score === null) return '-'
+    if (score === -Infinity) return '-∞'
+    if (score === Infinity) return '+∞'
+    // Show with sign and 2 decimal places
+    const sign = score >= 0 ? '+' : ''
+    return sign + score.toFixed(2)
+  }
+
   function formatOutcome(outcome) {
     if (outcome === true) return 'TRUE'
     if (outcome === false) return 'FALSE'
@@ -67,7 +88,7 @@
     <!-- Controls -->
     <div class="bg-panel-mid border border-panel-border rounded p-4">
       <div class="flex flex-col gap-4">
-        <div class="flex flex-wrap gap-4">
+        <div class="flex flex-wrap gap-4 items-end">
           <ControlGroup label="Year">
             <select
               bind:value={selectedYear}
@@ -78,6 +99,23 @@
                 <option value={year}>{year}</option>
               {/each}
             </select>
+          </ControlGroup>
+
+          <ControlGroup label="Display">
+            <button
+              onclick={() => showScores = !showScores}
+              class="flex items-center gap-2 px-3 py-2 rounded border transition-all duration-150
+                {showScores
+                  ? 'border-phosphor-green bg-phosphor-green/10 text-phosphor-green'
+                  : 'border-panel-border text-text-secondary hover:border-text-secondary'}"
+            >
+              <span class="w-8 h-5 rounded-full relative transition-colors duration-150
+                {showScores ? 'bg-phosphor-green/30' : 'bg-panel-inset'}">
+                <span class="absolute top-0.5 w-4 h-4 rounded-full transition-all duration-150
+                  {showScores ? 'left-3.5 bg-phosphor-green' : 'left-0.5 bg-text-dim'}"></span>
+              </span>
+              <span class="text-sm">{showScores ? 'Scores' : 'Probabilities'}</span>
+            </button>
           </ControlGroup>
         </div>
 
@@ -150,8 +188,12 @@
                   {formatOutcome(row.outcome)}
                 </td>
                 {#each players.filter(p => selectedPlayers.includes(p)) as player}
-                  <td class="px-3 py-2 text-center font-mono text-text-secondary">
-                    {formatProbability(row[player])}
+                  {@const score = showScores ? calculateScore(row[player], row.outcome) : null}
+                  <td class="px-3 py-2 text-center font-mono
+                    {showScores && score !== null
+                      ? (score >= 0 ? 'text-phosphor-green' : 'text-phosphor-red')
+                      : 'text-text-secondary'}">
+                    {showScores ? formatScore(row[player], row.outcome) : formatProbability(row[player])}
                   </td>
                 {/each}
               </tr>
