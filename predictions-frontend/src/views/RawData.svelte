@@ -2,6 +2,7 @@
   import * as aq from 'arquero'
   import ControlGroup from "../lib/ControlGroup.svelte"
   import { dataReady, gameData, years, players, playerColors } from '../lib/gameDataStore.svelte.js'
+  import { calculateScore, formatScore, formatProbability } from '../utils/scoring.js'
 
   let selectedYear = $state(null)
   let selectedCategory = $state(null) // null means "All"
@@ -67,29 +68,9 @@
     selectedPlayers = []
   }
 
-  function formatProbability(value) {
-    if (value === null || value === undefined || isNaN(value)) return '-'
-    return (value * 100).toFixed(0) + '%'
-  }
-
-  function calculateScore(prediction, outcome) {
-    if (prediction === null || prediction === undefined || isNaN(prediction)) return null
-    if (outcome === null || outcome === undefined) return null
-
-    // Probability assigned to the actual outcome
-    const pAssigned = outcome ? prediction : 1 - prediction
-    // Score = log(p_assigned) - log(0.5)
-    return Math.log(pAssigned) - Math.log(0.5)
-  }
-
-  function formatScore(prediction, outcome) {
+  function formatScoreForRow(prediction, outcome) {
     const score = calculateScore(prediction, outcome)
-    if (score === null) return '-'
-    if (score === -Infinity) return '-∞'
-    if (score === Infinity) return '+∞'
-    // Show with sign and 2 decimal places
-    const sign = score >= 0 ? '+' : ''
-    return sign + score.toFixed(2)
+    return formatScore(score)
   }
 
   function formatOutcome(outcome) {
@@ -241,7 +222,7 @@
                     {showScores && score !== null
                       ? (score >= 0 ? 'text-phosphor-green' : 'text-phosphor-red')
                       : 'text-text-secondary'}">
-                    {showScores ? formatScore(row[player], row.outcome) : formatProbability(row[player])}
+                    {showScores ? formatScoreForRow(row[player], row.outcome) : formatProbability(row[player])}
                   </td>
                 {/each}
               </tr>
