@@ -790,35 +790,72 @@ def parse_all_years(input_dir: Path) -> GameData:
     )
 
 
-def export_to_json(game_data: GameData, output_path: Path) -> None:
+def export_to_csv(game_data: GameData, output_path: Path) -> None:
     """
-    Export GameData to JSON format.
+    Export GameData to CSV format.
+
+    Creates a denormalized CSV where each row is a statement with its outcome
+    and all participants' predictions as columns.
 
     Args:
         game_data: The GameData object to export
-        output_path: Path where the JSON file should be written
+        output_path: Path where the CSV file should be written
 
     Raises:
         IOError: If the file cannot be written
     """
-    import json
-    from dataclasses import asdict
+    import csv
 
-    # Convert to dictionary format
-    data_dict = {
-        "statements": [asdict(stmt) for stmt in game_data.statements],
-        "predictions": [asdict(pred) for pred in game_data.predictions],
-        "outcomes": [
-            {
-                "statement_id": outcome.statement_id,
-                "outcome": outcome.outcome,
-                "date": outcome.date.isoformat() if outcome.date else None,
-            }
-            for outcome in game_data.outcomes
-        ],
-    }
+    # Create indices for quick lookups
+    predictions_by_stmt = {}
+    for pred in game_data.predictions:
+        if pred.statement_id not in predictions_by_stmt:
+            predictions_by_stmt[pred.statement_id] = {}
+        predictions_by_stmt[pred.statement_id][pred.participant] = pred.probability
 
-    # Write to file
+    outcomes_by_stmt = {outcome.statement_id: outcome for outcome in game_data.outcomes}
+
+    # Get all unique participants (sorted for consistent column order)
+    participants = sorted(
+        {pred.participant for pred in game_data.predictions}
+    )
+
+    # Define CSV columns
+    base_columns = ["id", "year", "text", "category", "proposer", "outcome", "outcome_date"]
+    columns = base_columns + participants
+
+    # Prepare rows
+    rows = []
+    for stmt in game_data.statements:
+        row = {
+            "id": stmt.id,
+            "year": stmt.year,
+            "text": stmt.text,
+            "category": stmt.category,
+            "proposer": stmt.proposer,
+        }
+
+        # Add outcome
+        outcome = outcomes_by_stmt.get(stmt.id)
+        if outcome:
+            row["outcome"] = outcome.outcome
+            row["outcome_date"] = outcome.date.isoformat() if outcome.date else ""
+        else:
+            row["outcome"] = ""
+            row["outcome_date"] = ""
+
+        # Add predictions for each participant
+        stmt_predictions = predictions_by_stmt.get(stmt.id, {})
+        for participant in participants:
+            row[participant] = stmt_predictions.get(participant, "")
+
+        rows.append(row)
+
+    # Write to CSV
     output_path = Path(output_path)
-    with open(output_path, "w") as f:
-        json.dump(data_dict, f, indent=2)
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+
+    with open(output_path, "w", newline="") as f:
+        writer = csv.DictWriter(f, fieldnames=columns)
+        writer.writeheader()
+        writer.writerows(rows)

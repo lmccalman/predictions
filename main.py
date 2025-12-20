@@ -5,7 +5,7 @@ from pathlib import Path
 
 import click
 
-from predictions.parser import export_to_json, parse_all_years
+from predictions.parser import export_to_csv, parse_all_years
 
 
 @click.command()
@@ -20,11 +20,11 @@ from predictions.parser import export_to_json, parse_all_years
     "--output",
     "-o",
     type=click.Path(path_type=Path),
-    default="output/game_data.json",
-    help="Output JSON file path",
+    default="output/game_data.csv",
+    help="Output CSV file path",
 )
 def main(input_dir: Path, output: Path):
-    """Parse prediction game xlsx files and export to JSON."""
+    """Parse prediction game xlsx files and export to CSV."""
     click.echo(f"Reading xlsx files from: {input_dir}")
 
     try:
@@ -39,8 +39,8 @@ def main(input_dir: Path, output: Path):
         # Create output directory if it doesn't exist
         output.parent.mkdir(parents=True, exist_ok=True)
 
-        # Export to JSON
-        export_to_json(game_data, output)
+        # Export to CSV
+        export_to_csv(game_data, output)
         click.echo(f"✓ Exported data to: {output}")
 
     except Exception as e:

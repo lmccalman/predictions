@@ -12,7 +12,7 @@ from predictions.parser.xlsx_parser import (
     extract_statements_2025,
     extract_predictions_2022_2024,
     extract_predictions_2025,
-    export_to_json,
+    export_to_csv,
 )
 
 __all__ = [
@@ -27,5 +27,5 @@ __all__ = [
     "extract_statements_2025",
     "extract_predictions_2022_2024",
     "extract_predictions_2025",
-    "export_to_json",
+    "export_to_csv",
 ]

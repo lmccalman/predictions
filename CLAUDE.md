@@ -13,7 +13,7 @@ The goal is to create an interactive website for exploring game progress and sta
 - Comparative analyses between players
 - Performance on own predictions vs. others' predictions
 
-Current status: Data ingestion complete, frontend development in progress. Raw data in xlsx spreadsheets (`input/` directory, 2022-2025) is parsed into JSON format for the web frontend.
+Current status: Data ingestion complete, frontend development in progress. Raw data in xlsx spreadsheets (`input/` directory, 2022-2025) is parsed into CSV format for analysis and the web frontend.
 
 ## Technology Stack
 
@@ -84,11 +84,15 @@ Located in `predictions/parser/`, the ingestion component reads xlsx files from 
 2. **Predictions**: Probabilities (0.0-1.0) assigned by each family member
 3. **Outcomes**: Actual results (True/False/Unresolved) for each statement
 
-The parser handles multiple xlsx formats (2022-2024 legacy format and 2025+ current format) and exports to JSON for frontend consumption.
+The parser handles multiple xlsx formats (2022-2024 legacy format and 2025+ current format) and exports to a denormalized CSV file where each row represents a statement with its outcome and all participants' predictions as columns.
 
 Key files:
 - `predictions/parser/xlsx_parser.py`: Main parsing logic
 - `main.py`: CLI entry point for parsing
+
+CSV Output Structure:
+- Base columns: id, year, text, category, proposer, outcome, outcome_date
+- Participant columns: One column per participant containing their probability prediction
 
 ### Scoring Algorithm
 
@@ -105,7 +109,7 @@ Located in `predictions-frontend/`, the frontend is built with:
 - **Observable Plot**: Declarative data visualisation library for charts and graphs
 - **Tailwind CSS v4**: Utility-first styling (use Tailwind classes, not CSS properties)
 
-The frontend consumes JSON data from the backend parser and provides interactive visualisations for:
+The frontend consumes CSV data from the backend parser and provides interactive visualisations for:
 - Player performance over time
 - Category analysis
 - Comparative statistics
@@ -115,4 +119,4 @@ Key structure:
 - `src/App.svelte`: Main application component
 - `src/lib/`: Reusable Svelte components
 - `src/utils/`: JavaScript utility functions (future)
-- Public data served from backend JSON output
+- Public data served from backend CSV output
