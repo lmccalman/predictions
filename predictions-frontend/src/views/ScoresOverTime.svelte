@@ -96,21 +96,33 @@
     selectedPlayers = []
   }
 
-  // Get score summary for table
-  const scoreSummary = $derived.by(() => {
-    if (scoreData.length === 0) return []
+  // Get ranked scores per year for table (filtered by selected players)
+  const rankedByYear = $derived.by(() => {
+    if (scoreData.length === 0 || selectedPlayers.length === 0) return { years: [], rankings: [] }
 
-    // Group by player
-    const byPlayer = {}
-    for (const player of players) {
-      byPlayer[player] = { player, years: {} }
+    // Group scores by year, filter by selected players, and sort by score descending
+    const byYear = {}
+    for (const year of years) {
+      byYear[year] = scoreData
+        .filter(d => d.year === year && selectedPlayers.includes(d.player))
+        .sort((a, b) => b.score - a.score)
     }
 
-    for (const d of scoreData) {
-      byPlayer[d.player].years[d.year] = d.score
+    // Create row data: each row is a rank position (1st, 2nd, 3rd, etc.)
+    const maxPlayers = selectedPlayers.length
+    const rankings = []
+    for (let rank = 0; rank < maxPlayers; rank++) {
+      const row = { rank: rank + 1 }
+      for (const year of years) {
+        const playerData = byYear[year][rank]
+        if (playerData) {
+          row[year] = playerData
+        }
+      }
+      rankings.push(row)
     }
 
-    return Object.values(byPlayer)
+    return { years, rankings }
   })
 
   function formatScoreDisplay(score) {
@@ -167,34 +179,37 @@
       </ControlGroup>
     </div>
 
-    <!-- Score table -->
+    <!-- Score table - ranked by year -->
     <div class="bg-panel-inset border border-panel-border rounded overflow-hidden shadow-inset-panel">
       <div class="overflow-x-auto">
         <table class="w-full text-sm">
           <thead>
             <tr class="bg-panel-mid border-b border-panel-border">
-              <th class="px-3 py-2 text-left text-xs font-semibold uppercase tracking-wider text-text-secondary sticky left-0 bg-panel-mid z-10">Player</th>
+              <th class="px-3 py-2 text-left text-xs font-semibold uppercase tracking-wider text-text-secondary sticky left-0 bg-panel-mid z-10 w-12">Rank</th>
               {#each years as year}
-                <th class="px-3 py-2 text-center text-xs font-semibold uppercase tracking-wider text-text-secondary min-w-[80px]">{year}</th>
+                <th class="px-3 py-2 text-center text-xs font-semibold uppercase tracking-wider text-text-secondary min-w-[120px]">{year}</th>
               {/each}
             </tr>
           </thead>
           <tbody>
-            {#each scoreSummary.filter(s => selectedPlayers.includes(s.player)) as row, rowIndex}
-              {@const playerIndex = players.indexOf(row.player)}
+            {#each rankedByYear.rankings as row}
               <tr class="border-b border-panel-border/50 hover:bg-panel-mid/50 transition-colors duration-100">
-                <td
-                  class="px-3 py-2 font-medium sticky left-0 bg-panel-inset z-10"
-                  style="color: {playerColors[playerIndex]}"
-                >
-                  {row.player}
+                <td class="px-3 py-2 font-medium text-text-secondary sticky left-0 bg-panel-inset z-10">
+                  {row.rank}
                 </td>
                 {#each years as year}
-                  {@const score = row.years[year]}
-                  <td class="px-3 py-2 text-center font-mono
-                    {score >= 0 ? 'text-phosphor-green' : 'text-phosphor-red'}">
-                    {formatScoreDisplay(score)}
-                  </td>
+                  {@const data = row[year]}
+                  {#if data}
+                    {@const playerIndex = players.indexOf(data.player)}
+                    <td class="px-3 py-2 text-center">
+                      <span style="color: {playerColors[playerIndex]}">{data.player}</span>
+                      <span class="font-mono ml-1 {data.score >= 0 ? 'text-phosphor-green' : 'text-phosphor-red'}">
+                        {formatScoreDisplay(data.score)}
+                      </span>
+                    </td>
+                  {:else}
+                    <td class="px-3 py-2 text-center text-text-dim">-</td>
+                  {/if}
                 {/each}
               </tr>
             {/each}
