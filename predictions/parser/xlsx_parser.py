@@ -619,8 +619,25 @@ def extract_outcomes(filepath: Path, statements: list[Statement]) -> list[Outcom
         # Check which outcome column name is used
         if "Outcome (1 = true, 0 = false)" in df.columns:
             outcome_col = "Outcome (1 = true, 0 = false)"
-        else:
+        elif "Outcome" in df.columns:
             outcome_col = "Outcome"
+        else:
+            outcome_col = None
+
+        # Special case for 2022: outcomes are in Summary sheet, not Main
+        # Check if Main sheet outcome column is empty/all NaN
+        if sheet_name == "Main" and (
+            outcome_col is None or df[outcome_col].isna().all()
+        ):
+            if "Summary" in sheet_names:
+                df = pd.read_excel(filepath, sheet_name="Summary")
+                # 2022 Summary uses different column name
+                if "Outcome (0 = false, 1 = true)" in df.columns:
+                    outcome_col = "Outcome (0 = false, 1 = true)"
+                elif "Outcome (1 = true, 0 = false)" in df.columns:
+                    outcome_col = "Outcome (1 = true, 0 = false)"
+                else:
+                    outcome_col = "Outcome"
     else:
         # 2025: Read from Statements sheet
         df = pd.read_excel(filepath, sheet_name="Statements")

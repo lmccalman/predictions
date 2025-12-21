@@ -1,106 +1,106 @@
 id,year,text,category,proposer,outcome,outcome_date,Andrew,Bruce,Christine,David,Eileen,Gael,Iain,Jac,James,Kate,Lachy,Pete,Rohan
-2022-1,2022,That there will be a hung parliament at the next election and Labor will take office,Aus Politics,Iain,,,0.4,0.7,0.1,,0.2,0.65,0.5,0.2,0.1,0.8,0.35,0.1,0.45
-2022-2,2022,Dan Andrews will become leader of the Australian Labor Party,Aus Politics,Iain,,,0.2,0.1,0.05,,0.2,0.0,0.1,0.001,0.05,0.1,0.001,0.1,0.01
-2022-3,2022,The Greens will get more than 9 senators in the next federal election,Aus Politics,Kate,,,0.6,0.3,0.1,,0.6,0.6,0.7,0.7,0.1,0.1,0.5,0.5,0.55
-2022-4,2022,The House of Reps will include 5 independents by the end of the federal election,Aus Politics,Kate,,,0.7,0.3,0.1,,0.7,0.75,0.9,0.001,0.1,0.9,0.5,0.8,0.7
-2022-5,2022,The Australian Labor Party will not pledge to reverse the uni fee structure introduced in 2020,Aus Politics,Kate,,,0.6,0.8,0.9,,0.7,0.85,0.5,0.9,0.9,0.9,0.85,0.8,0.75
-2022-6,2022,Zali Steggal and Helen Haines will both retain their seats in Federal Parliament,Aus Politics,Gael,,,0.5,0.9,0.5,,0.7,0.95,0.9,0.4,0.5,0.9,0.85,0.9,0.5
-2022-7,2022,Scott Morrison will lose leadership of the Liberal Party at least once,Aus Politics,Bruce,,,0.8,0.7,0.15,,0.3,0.75,0.6,0.5,0.05,0.9,0.35,0.7,0.9
-2022-8,2022,Anthony Albanese will be Prime Minister on at least one day,Aus Politics,Bruce,,,0.6,0.9,0.05,,0.3,0.75,0.1,0.3,0.05,0.9,0.35,0.8,0.4
-2022-9,2022,A sitting MP will make allegations of possible voter fraud or election 'rigging' in the 2022 Australian federal election,Aus Politics,Lachy,,,0.55,0.3,0.3,,0.4,0.35,0.9,0.9,0.3,0.7,0.85,0.4,0.8
-2022-10,2022,The Australian Intelligence Community will release a statement contradicting a Government minister or MP during the 2022 election campaign,Aus Politics,Lachy,,,0.4,0.2,0.1,,0.2,0.55,0.1,0.15,0.1,0.9,0.001,0.1,0.75
-2022-11,2022,Scott Morrison will still be the Prime Minister of Australia,Aus Politics,Andrew,,,0.4,0.2,0.2,,0.8,0.75,0.5,0.7,0.05,0.1,0.65,0.3,0.1
-2022-12,2022,An Australian federal Minister will step down from their position due to direct involvement (proven or otherwise) in sexual misconduct at some point in the year.,Aus Politics,Andrew,,,0.65,0.4,0.1,,0.9,0.35,0.9,0.2,0.1,0.6,0.15,0.3,0.6
-2022-13,2022,"Friendlyjordies, or evidence he has brought to light, will feature in a court case or ICAC inquiry.",Aus Politics,Andrew,,,0.55,0.7,0.3,,0.6,0.65,0.7,0.5,0.3,0.1,0.15,0.5,0.5
-2022-14,2022,"At least one person commits suicide as an effect of the Royal Commission into Defence and Veteran Suicide, as reported in The Guardian",Aus Politics,Jac,,,0.4,0.8,0.7,,0.4,0.85,0.3,0.6,0.7,0.9,0.15,0.5,0.4
-2022-15,2022,Taylor Swift will get married,Celebrities,Kate,,,0.55,0.4,0.7,,0.15,0.8,0.6,0.2,0.7,0.8,0.15,0.5,0.01
-2022-16,2022,Jane Campion will win the Oscar for Best Director,Celebrities,Gael,,,0.8,0.6,0.2,,0.9,0.95,0.9,0.7,0.2,0.1,0.5,0.5,0.3
-2022-17,2022,"Harry and Megan's animated series ""Pearl"" will be released and have over 50% on Rotten Tomatoes",Celebrities,Lachy,,,0.4,0.3,0.8,,0.4,0.8,0.1,0.2,0.8,0.8,0.15,0.5,0.4
-2022-18,2022,Prince Andrew will enter or exit a courtroom wearing an oxygen mask and/or sitting in a wheelchair,Celebrities,Lachy,,,0.3,0.2,0.7,,0.1,0.2,0.4,0.1,0.05,0.1,0.15,0.1,0.2
-2022-19,2022,News Ltd will report on the emergence of a conspiracy theory relating to the Queen's death: that the palace is either secretly concealing her death or her continuing life,Celebrities,Lachy,,,0.25,0.4,0.8,,0.05,0.85,0.5,0.05,0.8,0.1,0.001,0.1,0.5
-2022-20,2022,Julian Assange will be located in Australia,Celebrities,Andrew,,,0.2,0.2,0.1,,0.05,0.55,0.3,0.2,0.1,0.2,0.15,0.1,0.3
-2022-21,2022,An alleged sexual predator will recieve an Emmy or Oscar by mainstream media (Andrew’s system),Celebrities,Rohan,,,0.4,0.3,0.3,,0.2,0.7,0.6,0.2,0.3,0.8,0.65,0.1,0.6
-2022-22,2022,The Queen will die,Celebrities,James and Christine,,,0.4,0.2,0.9,,0.3,0.7,0.7,0.05,0.9,0.9,0.35,0.1,0.3
-2022-23,2022,Ghislaine Maxwell will successfully strike a plea deal and reduce her aggregate sentence to no greater than 10 years with parole no greater than 5 years.,Celebrities,James and Christine,,,0.45,0.7,0.7,,0.1,0.65,0.9,0.2,0.7,0.1,0.65,0.7,0.5
-2022-24,2022,Formal criminal charges will be laid against Prince Andrew for sex offenses,Celebrities,James and Christine,,,0.6,0.2,0.7,,0.9,0.65,0.1,0.15,0.7,0.2,0.15,0.5,0.5
-2022-25,2022,Elizabeth Holmes will be sentenced to no greater than 15 years imprisonment.,Celebrities,James and Christine,,,0.6,0.9,0.8,,0.5,0.7,0.9,0.7,0.8,0.9,0.85,0.5,0.7
-2022-26,2022,Meghan and Harry will separate,Celebrities,James and Christine,,,0.2,0.1,0.2,,0.1,0.2,0.5,0.05,0.2,0.8,0.15,0.1,0.3
-2022-27,2022,Tom Holland and Zendaya will separate.,Celebrities,James and Christine,,,0.6,0.6,0.2,,0.5,0.65,0.4,0.2,0.2,0.9,0.5,0.5,0.4
-2022-28,2022,Donald Trump endorses on social media a movement that is called White Lives Matter,Celebrities,Jac,,,0.3,0.3,0.8,,0.1,0.45,0.9,0.001,0.8,0.9,0.001,0.1,0.55
-2022-29,2022,Britney Spears returns under conservatorship,Celebrities,Jac,,,0.1,0.1,0.05,,0.05,0.0,0.1,0.05,0.05,0.1,0.001,0.1,0.5
-2022-30,2022,"Taylor Swift and her partner separate, or announce they're expecting a child",Celebrities,Jac,,,0.4,0.3,0.7,,0.1,0.6,0.7,0.1,0.7,0.9,0.15,0.5,0.2
-2022-31,2022,Aung San Suu Kyi dies or announces she has a terminal illness (terminal illness including cancer),Celebrities,Jac,,,0.5,0.4,0.5,,0.2,0.45,0.3,0.2,0.5,0.1,0.35,0.1,0.5
-2022-32,2022,Henry Cavill marries,Celebrities,Jac,,,0.55,0.6,0.1,,0.2,0.5,0.4,0.2,0.1,0.5,0.15,0.5,0.4
-2022-33,2022,"Daily COVID cases in Australia will reach 150,000 at least once",Covid,Bruce,,,0.1,0.2,0.01,,0.1,0.6,0.9,0.05,0.01,0.4,0.15,0.9,0.9
-2022-34,2022,More deaths will be attributed to Omicron by the WHO than all other covid variants combined,Covid,Lachy,,,0.3,0.1,0.8,,0.1,0.75,0.4,0.001,0.8,0.3,0.85,0.5,0.7
-2022-35,2022,The average number of covid vaccinations per person amongst members of Xmas eve 2022 will be > 3,Covid,Lachy,,,0.8,0.9,0.9,,0.5,0.8,0.4,0.999,0.9,0.9,0.85,0.9,0.4
-2022-36,2022,2 new variants of Covid will be invented/discovered during 2022,Covid,Rohan,,,0.3,0.3,0.8,,0.3,0.85,0.9,0.001,0.8,0.9,0.35,0.9,0.4
-2022-37,2022,"Tasmania will have experienced at least 10,000 new cases in 1 day",Covid,Rohan,,,0.15,0.1,0.05,,0.1,0.45,0.3,0.001,0.02,0.1,0.001,0.5,0.55
-2022-38,2022,WHO switches to another alphabet than the Greek alphabet for Covid variants,Covid,Jac,,,0.45,0.8,0.2,,0.1,0.9,0.5,0.5,0.2,0.9,0.15,0.1,0.35
-2022-39,2022,Lachy and Jac's extension will be completed,Family,Iain,,,0.7,0.8,0.1,,0.5,0.4,0.8,0.5,0.0,0.9,0.85,0.5,0.15
-2022-40,2022,Rohan will work for two different employers (not his own family members),Family,Kate,,,0.4,0.6,0.1,,0.3,0.3,0.5,0.3,0.1,0.6,0.15,0.5,0.3
-2022-41,2022,Kate will swim the Broulee Bay to Breakers in March 2022 and improve her position from 9th in the 40s women’s age group,Family,Kate,,,0.6,0.8,0.9,,0.5,0.7,0.9,0.6,0.9,0.2,0.85,0.9,0.5
-2022-42,2022,Rohan will be at least 6ft tall,Family,Rohan,,,0.5,0.9,0.9,,0.4,0.001,0.9,0.99999,0.9,0.9,0.999,0.9,0.99
-2022-43,2022,A participant in the prediction game will get a dog or another dog,Family,Rohan,,,0.5,0.95,0.1,,0.1,0.75,0.9,0.2,0.1,0.1,0.001,0.5,0.25
-2022-44,2022,There will be a flow of water into the Lake Eyre basin in 2022,Natural world,Pete,,,0.75,0.8,0.5,,0.5,0.7,0.3,0.8,0.5,0.6,0.65,0.9,0.5
-2022-45,2022,Water from the Paroo will spill into the Darling in 2022,Natural world,Pete,,,0.5,0.7,0.5,,0.5,0.6,0.6,0.8,0.5,0.6,0.5,0.1,0.5
-2022-46,2022,In the Antarctic the Thwaites Glacier ice-shelf will collapse in 2022,Natural world,Pete,,,0.5,0.25,0.7,,0.5,0.7,0.7,0.1,0.7,0.2,0.35,0.5,0.5
-2022-47,2022,At least three quarters of the Great Barrier Reef will be bleached as a result of warming seas.,Natural world,Iain,,,0.5,0.8,0.7,,0.5,0.85,0.8,0.5,0.7,0.7,0.35,0.5,0.4
-2022-48,2022,Sabine Hoffstader will release a Youtube video explaining that the nature of dark matter has been confirmed experimentally,Natural world,Lachy,,,0.5,0.25,0.1,,0.5,0.65,0.5,0.6,0.1,0.5,0.001,0.5,0.5
-2022-49,2022,2022 will be the hottest year on record globally (via NASA),Natural world,Andrew,,,0.3,0.45,0.95,,0.3,0.82,0.8,0.2,0.95,0.3,0.15,0.6,0.4
-2022-50,2022,"A cultivated chilli will replace the Carolina Reaper as the world’s hottest, as measured in scoville units (GWR seems to be the source of this currently)",Natural world,Eileen,,,0.6,0.51,0.7,,0.8,0.75,0.2,0.5,0.7,0.8,0.65,0.5,0.8
-2022-51,2022,Christchurch will experience an earthquake of at least 4 on the Richter scale,Natural world,Eileen,,,0.4,0.25,0.7,,0.7,0.65,0.5,0.3,0.7,0.4,0.65,0.1,0.5
-2022-52,2022,Pope Francis will condemn the metaverse or warn of its potential damage,Society,Lachy,,,0.6,0.2,0.3,,0.5,0.8,0.9,0.5,0.3,0.1,0.35,0.5,0.2
-2022-53,2022,The 4th most popular baby name for girls in Australia will be Isla according to the NSW Government popular baby names site,Society,Gael,,,0.35,0.4,0.5,,0.1,0.9,0.8,0.2,0.5,0.9,0.35,0.1,0.8
-2022-54,2022,The 4th most popular baby name for boys in Australia will be Leo according to the NSW Government popular baby names site,Society,Gael,,,0.35,0.4,0.5,,0.1,0.9,0.7,0.2,0.5,0.2,0.35,0.1,0.2
-2022-55,2022,A statue in Australia will be removed because of negative associations with its history or colonial ties.,Society,Andrew,,,0.2,0.9,0.8,,0.2,0.6,0.8,0.4,0.8,0.1,0.15,0.7,0.6
-2022-56,2022,Dave Chapelle’s special ‘The Closer’ will be available to watch on Netflix (Aus or US),Society,Andrew,,,0.8,0.6,0.5,,0.8,0.5,0.6,0.6,0.5,0.2,0.999,0.5,0.5
-2022-57,2022,An actor in a Disney film or TV show will have their contract ‘cancelled’ due to social pressure related to a social media post or opinion they have expressed publicly.,Society,Andrew,,,0.7,0.4,0.6,,0.8,0.7,0.8,0.5,0.6,0.8,0.65,0.5,0.4
-2022-58,2022,"An Australian company or department will mandate the inclusion or visibility of preferred gender pronouns, whether through an HR directory or email signatures.",Society,Andrew,,,0.65,0.95,0.6,,0.8,0.75,0.5,0.5,0.6,0.8,0.35,0.5,0.4
-2022-59,2022,More than 30% of Australians will have been born overseas (currently 29.8%),Society,Andrew,,,0.2,0.6,0.1,,0.6,0.9,0.9,0.3,0.1,0.2,0.65,0.1,0.55
-2022-60,2022,"LGBTIQ+ will be the acronym in widespread usage throughout Australia, as determined by the definition from LGBTIQ+ Health Australia (the peak body org for health and research related to that community)",Society,Eileen,,,0.45,0.7,0.5,,0.7,0.75,0.7,0.9,0.5,0.2,0.999,0.5,0.3
-2022-61,2022,"The meat industry in Australia and/or the US will succeed in controlling the use of ‘meat terms’ (meat, beef etc.) for non-animal protein products",Society,Eileen,,,0.35,0.6,0.2,,0.6,0.74,0.8,0.1,0.2,0.1,0.999,0.8,0.5
-2022-62,2022,"The median house price in Canberra will be over $1,200,000 (currently $1,015,833)",Society,Eileen,,,0.7,0.2,0.2,,0.8,0.8,0.8,0.99999,0.2,0.9,0.15,0.6,0.45
-2022-63,2022,An artist or band on the Rock and Roll Hall of Fame has a performance using digital avatar (source https://en.wikipedia.org/wiki/List_of_Rock_and_Roll_Hall_of_Fame_inductees),Society,Jac,,,0.4,0.6,0.7,,0.3,0.6,0.5,0.6,0.7,0.2,0.15,0.1,0.5
+2022-1,2022,That there will be a hung parliament at the next election and Labor will take office,Aus Politics,Iain,False,,0.4,0.7,0.1,,0.2,0.65,0.5,0.2,0.1,0.8,0.35,0.1,0.45
+2022-2,2022,Dan Andrews will become leader of the Australian Labor Party,Aus Politics,Iain,False,,0.2,0.1,0.05,,0.2,0.0,0.1,0.001,0.05,0.1,0.001,0.1,0.01
+2022-3,2022,The Greens will get more than 9 senators in the next federal election,Aus Politics,Kate,True,,0.6,0.3,0.1,,0.6,0.6,0.7,0.7,0.1,0.1,0.5,0.5,0.55
+2022-4,2022,The House of Reps will include 5 independents by the end of the federal election,Aus Politics,Kate,True,,0.7,0.3,0.1,,0.7,0.75,0.9,0.001,0.1,0.9,0.5,0.8,0.7
+2022-5,2022,The Australian Labor Party will not pledge to reverse the uni fee structure introduced in 2020,Aus Politics,Kate,True,,0.6,0.8,0.9,,0.7,0.85,0.5,0.9,0.9,0.9,0.85,0.8,0.75
+2022-6,2022,Zali Steggal and Helen Haines will both retain their seats in Federal Parliament,Aus Politics,Gael,True,,0.5,0.9,0.5,,0.7,0.95,0.9,0.4,0.5,0.9,0.85,0.9,0.5
+2022-7,2022,Scott Morrison will lose leadership of the Liberal Party at least once,Aus Politics,Bruce,True,,0.8,0.7,0.15,,0.3,0.75,0.6,0.5,0.05,0.9,0.35,0.7,0.9
+2022-8,2022,Anthony Albanese will be Prime Minister on at least one day,Aus Politics,Bruce,True,,0.6,0.9,0.05,,0.3,0.75,0.1,0.3,0.05,0.9,0.35,0.8,0.4
+2022-9,2022,A sitting MP will make allegations of possible voter fraud or election 'rigging' in the 2022 Australian federal election,Aus Politics,Lachy,False,,0.55,0.3,0.3,,0.4,0.35,0.9,0.9,0.3,0.7,0.85,0.4,0.8
+2022-10,2022,The Australian Intelligence Community will release a statement contradicting a Government minister or MP during the 2022 election campaign,Aus Politics,Lachy,False,,0.4,0.2,0.1,,0.2,0.55,0.1,0.15,0.1,0.9,0.001,0.1,0.75
+2022-11,2022,Scott Morrison will still be the Prime Minister of Australia,Aus Politics,Andrew,False,,0.4,0.2,0.2,,0.8,0.75,0.5,0.7,0.05,0.1,0.65,0.3,0.1
+2022-12,2022,An Australian federal Minister will step down from their position due to direct involvement (proven or otherwise) in sexual misconduct at some point in the year.,Aus Politics,Andrew,False,,0.65,0.4,0.1,,0.9,0.35,0.9,0.2,0.1,0.6,0.15,0.3,0.6
+2022-13,2022,"Friendlyjordies, or evidence he has brought to light, will feature in a court case or ICAC inquiry.",Aus Politics,Andrew,True,,0.55,0.7,0.3,,0.6,0.65,0.7,0.5,0.3,0.1,0.15,0.5,0.5
+2022-14,2022,"At least one person commits suicide as an effect of the Royal Commission into Defence and Veteran Suicide, as reported in The Guardian",Aus Politics,Jac,False,,0.4,0.8,0.7,,0.4,0.85,0.3,0.6,0.7,0.9,0.15,0.5,0.4
+2022-15,2022,Taylor Swift will get married,Celebrities,Kate,False,,0.55,0.4,0.7,,0.15,0.8,0.6,0.2,0.7,0.8,0.15,0.5,0.01
+2022-16,2022,Jane Campion will win the Oscar for Best Director,Celebrities,Gael,True,,0.8,0.6,0.2,,0.9,0.95,0.9,0.7,0.2,0.1,0.5,0.5,0.3
+2022-17,2022,"Harry and Megan's animated series ""Pearl"" will be released and have over 50% on Rotten Tomatoes",Celebrities,Lachy,False,,0.4,0.3,0.8,,0.4,0.8,0.1,0.2,0.8,0.8,0.15,0.5,0.4
+2022-18,2022,Prince Andrew will enter or exit a courtroom wearing an oxygen mask and/or sitting in a wheelchair,Celebrities,Lachy,False,,0.3,0.2,0.7,,0.1,0.2,0.4,0.1,0.05,0.1,0.15,0.1,0.2
+2022-19,2022,News Ltd will report on the emergence of a conspiracy theory relating to the Queen's death: that the palace is either secretly concealing her death or her continuing life,Celebrities,Lachy,False,,0.25,0.4,0.8,,0.05,0.85,0.5,0.05,0.8,0.1,0.001,0.1,0.5
+2022-20,2022,Julian Assange will be located in Australia,Celebrities,Andrew,False,,0.2,0.2,0.1,,0.05,0.55,0.3,0.2,0.1,0.2,0.15,0.1,0.3
+2022-21,2022,An alleged sexual predator will recieve an Emmy or Oscar by mainstream media (Andrew’s system),Celebrities,Rohan,False,,0.4,0.3,0.3,,0.2,0.7,0.6,0.2,0.3,0.8,0.65,0.1,0.6
+2022-22,2022,The Queen will die,Celebrities,James and Christine,True,,0.4,0.2,0.9,,0.3,0.7,0.7,0.05,0.9,0.9,0.35,0.1,0.3
+2022-23,2022,Ghislaine Maxwell will successfully strike a plea deal and reduce her aggregate sentence to no greater than 10 years with parole no greater than 5 years.,Celebrities,James and Christine,False,,0.45,0.7,0.7,,0.1,0.65,0.9,0.2,0.7,0.1,0.65,0.7,0.5
+2022-24,2022,Formal criminal charges will be laid against Prince Andrew for sex offenses,Celebrities,James and Christine,False,,0.6,0.2,0.7,,0.9,0.65,0.1,0.15,0.7,0.2,0.15,0.5,0.5
+2022-25,2022,Elizabeth Holmes will be sentenced to no greater than 15 years imprisonment.,Celebrities,James and Christine,True,,0.6,0.9,0.8,,0.5,0.7,0.9,0.7,0.8,0.9,0.85,0.5,0.7
+2022-26,2022,Meghan and Harry will separate,Celebrities,James and Christine,False,,0.2,0.1,0.2,,0.1,0.2,0.5,0.05,0.2,0.8,0.15,0.1,0.3
+2022-27,2022,Tom Holland and Zendaya will separate.,Celebrities,James and Christine,False,,0.6,0.6,0.2,,0.5,0.65,0.4,0.2,0.2,0.9,0.5,0.5,0.4
+2022-28,2022,Donald Trump endorses on social media a movement that is called White Lives Matter,Celebrities,Jac,False,,0.3,0.3,0.8,,0.1,0.45,0.9,0.001,0.8,0.9,0.001,0.1,0.55
+2022-29,2022,Britney Spears returns under conservatorship,Celebrities,Jac,False,,0.1,0.1,0.05,,0.05,0.0,0.1,0.05,0.05,0.1,0.001,0.1,0.5
+2022-30,2022,"Taylor Swift and her partner separate, or announce they're expecting a child",Celebrities,Jac,False,,0.4,0.3,0.7,,0.1,0.6,0.7,0.1,0.7,0.9,0.15,0.5,0.2
+2022-31,2022,Aung San Suu Kyi dies or announces she has a terminal illness (terminal illness including cancer),Celebrities,Jac,False,,0.5,0.4,0.5,,0.2,0.45,0.3,0.2,0.5,0.1,0.35,0.1,0.5
+2022-32,2022,Henry Cavill marries,Celebrities,Jac,False,,0.55,0.6,0.1,,0.2,0.5,0.4,0.2,0.1,0.5,0.15,0.5,0.4
+2022-33,2022,"Daily COVID cases in Australia will reach 150,000 at least once",Covid,Bruce,False,,0.1,0.2,0.01,,0.1,0.6,0.9,0.05,0.01,0.4,0.15,0.9,0.9
+2022-34,2022,More deaths will be attributed to Omicron by the WHO than all other covid variants combined,Covid,Lachy,False,,0.3,0.1,0.8,,0.1,0.75,0.4,0.001,0.8,0.3,0.85,0.5,0.7
+2022-35,2022,The average number of covid vaccinations per person amongst members of Xmas eve 2022 will be > 3,Covid,Lachy,True,,0.8,0.9,0.9,,0.5,0.8,0.4,0.999,0.9,0.9,0.85,0.9,0.4
+2022-36,2022,2 new variants of Covid will be invented/discovered during 2022,Covid,Rohan,False,,0.3,0.3,0.8,,0.3,0.85,0.9,0.001,0.8,0.9,0.35,0.9,0.4
+2022-37,2022,"Tasmania will have experienced at least 10,000 new cases in 1 day",Covid,Rohan,False,,0.15,0.1,0.05,,0.1,0.45,0.3,0.001,0.02,0.1,0.001,0.5,0.55
+2022-38,2022,WHO switches to another alphabet than the Greek alphabet for Covid variants,Covid,Jac,False,,0.45,0.8,0.2,,0.1,0.9,0.5,0.5,0.2,0.9,0.15,0.1,0.35
+2022-39,2022,Lachy and Jac's extension will be completed,Family,Iain,False,,0.7,0.8,0.1,,0.5,0.4,0.8,0.5,0.0,0.9,0.85,0.5,0.15
+2022-40,2022,Rohan will work for two different employers (not his own family members),Family,Kate,False,,0.4,0.6,0.1,,0.3,0.3,0.5,0.3,0.1,0.6,0.15,0.5,0.3
+2022-41,2022,Kate will swim the Broulee Bay to Breakers in March 2022 and improve her position from 9th in the 40s women’s age group,Family,Kate,True,,0.6,0.8,0.9,,0.5,0.7,0.9,0.6,0.9,0.2,0.85,0.9,0.5
+2022-42,2022,Rohan will be at least 6ft tall,Family,Rohan,True,,0.5,0.9,0.9,,0.4,0.001,0.9,0.99999,0.9,0.9,0.999,0.9,0.99
+2022-43,2022,A participant in the prediction game will get a dog or another dog,Family,Rohan,False,,0.5,0.95,0.1,,0.1,0.75,0.9,0.2,0.1,0.1,0.001,0.5,0.25
+2022-44,2022,There will be a flow of water into the Lake Eyre basin in 2022,Natural world,Pete,True,,0.75,0.8,0.5,,0.5,0.7,0.3,0.8,0.5,0.6,0.65,0.9,0.5
+2022-45,2022,Water from the Paroo will spill into the Darling in 2022,Natural world,Pete,True,,0.5,0.7,0.5,,0.5,0.6,0.6,0.8,0.5,0.6,0.5,0.1,0.5
+2022-46,2022,In the Antarctic the Thwaites Glacier ice-shelf will collapse in 2022,Natural world,Pete,False,,0.5,0.25,0.7,,0.5,0.7,0.7,0.1,0.7,0.2,0.35,0.5,0.5
+2022-47,2022,At least three quarters of the Great Barrier Reef will be bleached as a result of warming seas.,Natural world,Iain,False,,0.5,0.8,0.7,,0.5,0.85,0.8,0.5,0.7,0.7,0.35,0.5,0.4
+2022-48,2022,Sabine Hoffstader will release a Youtube video explaining that the nature of dark matter has been confirmed experimentally,Natural world,Lachy,False,,0.5,0.25,0.1,,0.5,0.65,0.5,0.6,0.1,0.5,0.001,0.5,0.5
+2022-49,2022,2022 will be the hottest year on record globally (via NASA),Natural world,Andrew,False,,0.3,0.45,0.95,,0.3,0.82,0.8,0.2,0.95,0.3,0.15,0.6,0.4
+2022-50,2022,"A cultivated chilli will replace the Carolina Reaper as the world’s hottest, as measured in scoville units (GWR seems to be the source of this currently)",Natural world,Eileen,False,,0.6,0.51,0.7,,0.8,0.75,0.2,0.5,0.7,0.8,0.65,0.5,0.8
+2022-51,2022,Christchurch will experience an earthquake of at least 4 on the Richter scale,Natural world,Eileen,False,,0.4,0.25,0.7,,0.7,0.65,0.5,0.3,0.7,0.4,0.65,0.1,0.5
+2022-52,2022,Pope Francis will condemn the metaverse or warn of its potential damage,Society,Lachy,False,,0.6,0.2,0.3,,0.5,0.8,0.9,0.5,0.3,0.1,0.35,0.5,0.2
+2022-53,2022,The 4th most popular baby name for girls in Australia will be Isla according to the NSW Government popular baby names site,Society,Gael,True,,0.35,0.4,0.5,,0.1,0.9,0.8,0.2,0.5,0.9,0.35,0.1,0.8
+2022-54,2022,The 4th most popular baby name for boys in Australia will be Leo according to the NSW Government popular baby names site,Society,Gael,False,,0.35,0.4,0.5,,0.1,0.9,0.7,0.2,0.5,0.2,0.35,0.1,0.2
+2022-55,2022,A statue in Australia will be removed because of negative associations with its history or colonial ties.,Society,Andrew,True,,0.2,0.9,0.8,,0.2,0.6,0.8,0.4,0.8,0.1,0.15,0.7,0.6
+2022-56,2022,Dave Chapelle’s special ‘The Closer’ will be available to watch on Netflix (Aus or US),Society,Andrew,True,,0.8,0.6,0.5,,0.8,0.5,0.6,0.6,0.5,0.2,0.999,0.5,0.5
+2022-57,2022,An actor in a Disney film or TV show will have their contract ‘cancelled’ due to social pressure related to a social media post or opinion they have expressed publicly.,Society,Andrew,False,,0.7,0.4,0.6,,0.8,0.7,0.8,0.5,0.6,0.8,0.65,0.5,0.4
+2022-58,2022,"An Australian company or department will mandate the inclusion or visibility of preferred gender pronouns, whether through an HR directory or email signatures.",Society,Andrew,True,,0.65,0.95,0.6,,0.8,0.75,0.5,0.5,0.6,0.8,0.35,0.5,0.4
+2022-59,2022,More than 30% of Australians will have been born overseas (currently 29.8%),Society,Andrew,False,,0.2,0.6,0.1,,0.6,0.9,0.9,0.3,0.1,0.2,0.65,0.1,0.55
+2022-60,2022,"LGBTIQ+ will be the acronym in widespread usage throughout Australia, as determined by the definition from LGBTIQ+ Health Australia (the peak body org for health and research related to that community)",Society,Eileen,True,,0.45,0.7,0.5,,0.7,0.75,0.7,0.9,0.5,0.2,0.999,0.5,0.3
+2022-61,2022,"The meat industry in Australia and/or the US will succeed in controlling the use of ‘meat terms’ (meat, beef etc.) for non-animal protein products",Society,Eileen,False,,0.35,0.6,0.2,,0.6,0.74,0.8,0.1,0.2,0.1,0.999,0.8,0.5
+2022-62,2022,"The median house price in Canberra will be over $1,200,000 (currently $1,015,833)",Society,Eileen,False,,0.7,0.2,0.2,,0.8,0.8,0.8,0.99999,0.2,0.9,0.15,0.6,0.45
+2022-63,2022,An artist or band on the Rock and Roll Hall of Fame has a performance using digital avatar (source https://en.wikipedia.org/wiki/List_of_Rock_and_Roll_Hall_of_Fame_inductees),Society,Jac,False,,0.4,0.6,0.7,,0.3,0.6,0.5,0.6,0.7,0.2,0.15,0.1,0.5
 2022-64,2022,No Australian tennis player will win a senior Championship event at the Australian Open in 2022,Sport,Pete,,,0.0,0.0,0.0,,0.0,0.0,0.6,0.0,0.0,0.1,0.0,0.5,0.2
-2022-65,2022,Daniel Ricciardo will win the Australian GP in 2022.,Sport,Pete,,,0.5,0.1,0.5,,0.5,0.6,0.3,0.2,0.5,0.1,0.5,0.1,0.1
-2022-66,2022,Collingwood will make it into the top 8 at the end of the footy season,Sport,Iain,,,0.5,0.1,0.45,,0.5,0.6,0.6,0.5,0.45,0.7,0.5,0.1,0.6
-2022-67,2022,Italy will defeat Portugal in their qualifying match and reach the finals of the Football World Cup,Sport,Gael,,,0.5,0.6,0.7,,0.5,0.85,0.5,0.05,0.7,0.5,0.5,0.9,0.8
-2022-68,2022,Ash Barty will be world number 1 in the WRA rankings after the US Open,Sport,Gael,,,0.8,0.9,0.8,,0.8,0.98,0.8,0.999,0.8,0.9,0.5,0.9,0.55
-2022-69,2022,Neither Roger Federer nor Serena Williams will win a Grand Slam tennis tournament,Sport,Bruce,,,0.65,0.8,0.95,,0.4,0.9,0.8,0.999,0.95,0.8,0.85,0.1,0.5
-2022-70,2022,The Football World Cup will not go ahead on the scheduled dates in Qatar,Sport,Bruce,,,0.4,0.25,0.1,,0.5,0.3,0.5,0.55,0.1,0.1,0.65,0.9,0.2
-2022-71,2022,Lewis hamilton will win the 2022 world championship in Formula 1,Sport,Rohan,,,0.6,0.2,0.6,,0.5,0.8,0.8,0.6,0.6,0.8,0.35,0.9,0.65
-2022-72,2022,The Haas F1 team will score 0 points in the 2022 season,Sport,Rohan,,,0.5,0.7,0.5,,0.5,0.5,0.3,0.5,0.5,0.5,0.65,0.1,0.6
-2022-73,2022,ULA's vulcan centaur will launch succesfully (places a payload into orbit),Technology,Lachy,,,0.6,0.7,0.7,,0.6,0.6,0.6,0.2,0.7,0.4,0.85,0.5,0.5
-2022-74,2022,NASA will declare its Artemis 1 mission a success,Technology,Lachy,,,0.7,0.8,0.7,,0.7,0.8,0.7,0.6,0.7,0.5,0.65,0.5,0.7
-2022-75,2022,Starship/Superheavy will place Starship into a (partial) orbital trajectory,Technology,Lachy,,,0.65,0.6,0.6,,0.65,0.5,0.7,0.5,0.6,0.5,0.85,0.5,0.5
-2022-76,2022,James Webb telescope will deploy at L2 and 1 image from its Near-Infrared Camera (NIRCam) will be available on the internet for viewing by the public,Technology,Lachy,,,0.7,0.8,0.9,,0.7,0.65,0.8,0.7,0.9,0.5,0.999,0.9,0.5
-2022-77,2022,Facebook connect 2022 (or its 'meta' equivalent) will be hosted in virtual reality / a ('the'?) metaverse,Technology,Lachy,,,0.3,0.6,0.9,,0.1,0.5,0.9,0.5,0.9,0.2,0.35,0.5,0.7
-2022-78,2022,Apple will announce mixed reality glasses,Technology,Lachy,,,0.25,0.4,0.2,,0.1,0.675,0.9,0.45,0.2,0.7,0.35,0.1,0.8
-2022-79,2022,In-app purchases of Kindle books will be possible in the Kindle iphone app,Technology,Lachy,,,0.5,0.55,0.2,,0.5,0.85,0.9,0.2,0.2,0.8,0.15,0.5,0.5
-2022-80,2022,"It will be possible for at least one of the prediction participants to have food delivered by drone to their place of residence as a mainstream service, without it being part of a specific trial.",Technology,Andrew,,,0.2,0.3,0.1,,0.1,0.65,0.4,0.5,0.1,0.7,0.65,0.9,0.65
-2022-81,2022,"TMTG, the company that owns Trump’s “TRUTH Social” platform, will have a market cap of over $20 billion USD. (Twitter is around 35b)",Technology,Andrew,,,0.9,0.99,0.2,,0.9,0.8,0.3,0.2,0.2,0.1,0.15,0.5,0.3
-2022-82,2022,It will not be financially viable to mine ethereum using commercial GPUs.,Technology,Andrew,,,0.65,0.8,0.9,,0.5,0.5,0.5,0.45,0.9,0.8,0.85,0.5,0.6
-2022-83,2022,China will have more than 800 satellites in orbit (currently around 500),Technology,Andrew,,,0.4,0.65,0.05,,0.2,0.85,0.7,0.001,0.05,0.1,0.001,0.5,0.65
-2022-84,2022,Australia will be in the top 40 countries for broadband speed (as tracked in wiki page),Technology,Andrew,,,0.2,0.9,0.05,,0.3,0.7,0.2,0.05,0.05,0.7,0.15,0.8,0.7
-2022-85,2022,India will produce more total CO2 emissions than the US,Technology,Andrew,,,0.3,0.2,0.1,,0.1,0.8,0.5,0.001,0.1,0.8,0.35,0.8,0.6
-2022-86,2022,"The number of electric vehicles under $50K (excl on road costs) grows 67% or more in Australia, as listed on carsguide.com.au. Currently there are three cars: Hyundai Ioniq, Nissan Leaf and MG ZS EV",Technology,Jac,,,0.4,0.8,0.7,,0.2,0.65,0.3,0.55,0.7,0.9,0.35,0.7,0.35
-2022-87,2022,Boris Johnson will be replaced as Prime Minister by the Tory Party,World Politics,Gael,,,0.85,0.8,0.3,,0.8,0.85,0.4,0.1,0.3,0.9,0.65,0.9,0.5
-2022-88,2022,Boris Johnson will be the Prime Minister of the UK,World Politics,Andrew,,,0.15,0.2,0.7,,0.2,0.25,0.6,0.85,0.7,0.2,0.35,0.1,0.4
-2022-89,2022,At least some American states will resort to proclaimed and violent civil war rather that accept democratic elections,World Politics,Iain,,,0.3,0.1,0.1,,0.1,0.2,0.7,0.05,0.1,0.1,0.001,0.1,0.25
-2022-90,2022,Democrats will lose control of the US House of Representatives at the midterm elections,World Politics,Bruce,,,0.8,0.9,0.7,,0.6,0.7,0.9,0.7,0.7,0.8,0.999,0.1,0.4
-2022-91,2022,Democrats will not have control of the US Senate after the midterm election,World Politics,Bruce,,,0.8,0.9,0.7,,0.6,0.8,0.9,0.8,0.7,0.8,0.999,0.1,0.2
-2022-92,2022,Donald Trump will recieve at least 1 vote in the selection of the Speaker of the US house of Representatives (Congress),World Politics,Lachy,,,0.3,0.3,0.7,,0.1,0.35,0.9,0.7,0.7,0.9,0.65,0.1,0.5
-2022-93,2022,Donald Trump will release a book in 2022,World Politics,Rohan,,,0.55,0.7,0.8,,0.2,0.8,0.9,0.55,0.8,0.9,0.15,0.5,0.55
-2022-94,2022,Trump will announce he will contest the Republican presidential candidacy and launch an NFT,World Politics,James and Christine,,,0.3,0.4,0.7,,0.05,0.9,0.6,0.5,0.7,0.2,0.001,0.5,0.1
-2022-95,2022,China will invade Taiwan,World Politics,"Iain, James and Christine",,,0.35,0.2,0.7,,0.6,0.4,0.7,0.05,0.7,0.2,0.001,0.1,0.5
-2022-96,2022,A nuclear weapon will be detonated for any purpose (including a test) somewhere on earth or in space,World Politics,Lachy,,,0.1,0.4,0.1,,0.2,0.7,0.8,0.3,0.1,0.1,0.15,0.5,0.6
-2022-97,2022,Iran will announce it has produced a nuclear weapon,World Politics,Lachy,,,0.45,0.3,0.1,,0.2,0.7,0.6,0.3,0.1,0.1,0.15,0.5,0.6
-2022-98,2022,One or more of the G12 member countries will have diplomatically recognised Taiwan,World Politics,Andrew,,,0.15,0.2,0.1,,0.2,0.75,0.4,0.3,0.1,0.6,0.15,0.5,0.6
-2022-99,2022,"Russia will have invaded Ukraine (as reported by CNN, BBC, Guardian or NYT)",World Politics,"Andrew, Iain, James and Christine",,,0.6,0.4,0.95,,0.8,0.7,0.8,0.8,0.95,0.7,0.65,0.1,0.6
-2022-100,2022,The US will have gone to battle with China or Russia ( nuclear battle acceptable) agreed upon by at least half the people attending 2022 predictions,World Politics,Rohan,,,0.3,0.1,0.1,,0.1,0.6,0.5,0.1,0.1,0.2,0.001,0.1,0.2
-2022-101,2022,There is an assassination attempt on Xi Jinping as reported in The Guardian,World Politics,Jac,,,0.15,0.4,0.05,,0.1,0.35,0.3,0.5,0.05,0.1,0.001,0.1,0.45
-2022-102,2022,Bolsanaro wins the next Brazilian elections,World Politics,Jac,,,0.4,0.3,0.4,,0.4,0.75,0.8,0.3,0.4,0.2,0.65,0.1,0.6
+2022-65,2022,Daniel Ricciardo will win the Australian GP in 2022.,Sport,Pete,False,,0.5,0.1,0.5,,0.5,0.6,0.3,0.2,0.5,0.1,0.5,0.1,0.1
+2022-66,2022,Collingwood will make it into the top 8 at the end of the footy season,Sport,Iain,True,,0.5,0.1,0.45,,0.5,0.6,0.6,0.5,0.45,0.7,0.5,0.1,0.6
+2022-67,2022,Italy will defeat Portugal in their qualifying match and reach the finals of the Football World Cup,Sport,Gael,False,,0.5,0.6,0.7,,0.5,0.85,0.5,0.05,0.7,0.5,0.5,0.9,0.8
+2022-68,2022,Ash Barty will be world number 1 in the WRA rankings after the US Open,Sport,Gael,False,,0.8,0.9,0.8,,0.8,0.98,0.8,0.999,0.8,0.9,0.5,0.9,0.55
+2022-69,2022,Neither Roger Federer nor Serena Williams will win a Grand Slam tennis tournament,Sport,Bruce,True,,0.65,0.8,0.95,,0.4,0.9,0.8,0.999,0.95,0.8,0.85,0.1,0.5
+2022-70,2022,The Football World Cup will not go ahead on the scheduled dates in Qatar,Sport,Bruce,True,,0.4,0.25,0.1,,0.5,0.3,0.5,0.55,0.1,0.1,0.65,0.9,0.2
+2022-71,2022,Lewis hamilton will win the 2022 world championship in Formula 1,Sport,Rohan,False,,0.6,0.2,0.6,,0.5,0.8,0.8,0.6,0.6,0.8,0.35,0.9,0.65
+2022-72,2022,The Haas F1 team will score 0 points in the 2022 season,Sport,Rohan,False,,0.5,0.7,0.5,,0.5,0.5,0.3,0.5,0.5,0.5,0.65,0.1,0.6
+2022-73,2022,ULA's vulcan centaur will launch succesfully (places a payload into orbit),Technology,Lachy,False,,0.6,0.7,0.7,,0.6,0.6,0.6,0.2,0.7,0.4,0.85,0.5,0.5
+2022-74,2022,NASA will declare its Artemis 1 mission a success,Technology,Lachy,True,,0.7,0.8,0.7,,0.7,0.8,0.7,0.6,0.7,0.5,0.65,0.5,0.7
+2022-75,2022,Starship/Superheavy will place Starship into a (partial) orbital trajectory,Technology,Lachy,False,,0.65,0.6,0.6,,0.65,0.5,0.7,0.5,0.6,0.5,0.85,0.5,0.5
+2022-76,2022,James Webb telescope will deploy at L2 and 1 image from its Near-Infrared Camera (NIRCam) will be available on the internet for viewing by the public,Technology,Lachy,True,,0.7,0.8,0.9,,0.7,0.65,0.8,0.7,0.9,0.5,0.999,0.9,0.5
+2022-77,2022,Facebook connect 2022 (or its 'meta' equivalent) will be hosted in virtual reality / a ('the'?) metaverse,Technology,Lachy,False,,0.3,0.6,0.9,,0.1,0.5,0.9,0.5,0.9,0.2,0.35,0.5,0.7
+2022-78,2022,Apple will announce mixed reality glasses,Technology,Lachy,False,,0.25,0.4,0.2,,0.1,0.675,0.9,0.45,0.2,0.7,0.35,0.1,0.8
+2022-79,2022,In-app purchases of Kindle books will be possible in the Kindle iphone app,Technology,Lachy,False,,0.5,0.55,0.2,,0.5,0.85,0.9,0.2,0.2,0.8,0.15,0.5,0.5
+2022-80,2022,"It will be possible for at least one of the prediction participants to have food delivered by drone to their place of residence as a mainstream service, without it being part of a specific trial.",Technology,Andrew,False,,0.2,0.3,0.1,,0.1,0.65,0.4,0.5,0.1,0.7,0.65,0.9,0.65
+2022-81,2022,"TMTG, the company that owns Trump’s “TRUTH Social” platform, will have a market cap of over $20 billion USD. (Twitter is around 35b)",Technology,Andrew,False,,0.9,0.99,0.2,,0.9,0.8,0.3,0.2,0.2,0.1,0.15,0.5,0.3
+2022-82,2022,It will not be financially viable to mine ethereum using commercial GPUs.,Technology,Andrew,True,,0.65,0.8,0.9,,0.5,0.5,0.5,0.45,0.9,0.8,0.85,0.5,0.6
+2022-83,2022,China will have more than 800 satellites in orbit (currently around 500),Technology,Andrew,False,,0.4,0.65,0.05,,0.2,0.85,0.7,0.001,0.05,0.1,0.001,0.5,0.65
+2022-84,2022,Australia will be in the top 40 countries for broadband speed (as tracked in wiki page),Technology,Andrew,False,,0.2,0.9,0.05,,0.3,0.7,0.2,0.05,0.05,0.7,0.15,0.8,0.7
+2022-85,2022,India will produce more total CO2 emissions than the US,Technology,Andrew,False,,0.3,0.2,0.1,,0.1,0.8,0.5,0.001,0.1,0.8,0.35,0.8,0.6
+2022-86,2022,"The number of electric vehicles under $50K (excl on road costs) grows 67% or more in Australia, as listed on carsguide.com.au. Currently there are three cars: Hyundai Ioniq, Nissan Leaf and MG ZS EV",Technology,Jac,False,,0.4,0.8,0.7,,0.2,0.65,0.3,0.55,0.7,0.9,0.35,0.7,0.35
+2022-87,2022,Boris Johnson will be replaced as Prime Minister by the Tory Party,World Politics,Gael,True,,0.85,0.8,0.3,,0.8,0.85,0.4,0.1,0.3,0.9,0.65,0.9,0.5
+2022-88,2022,Boris Johnson will be the Prime Minister of the UK,World Politics,Andrew,False,,0.15,0.2,0.7,,0.2,0.25,0.6,0.85,0.7,0.2,0.35,0.1,0.4
+2022-89,2022,At least some American states will resort to proclaimed and violent civil war rather that accept democratic elections,World Politics,Iain,False,,0.3,0.1,0.1,,0.1,0.2,0.7,0.05,0.1,0.1,0.001,0.1,0.25
+2022-90,2022,Democrats will lose control of the US House of Representatives at the midterm elections,World Politics,Bruce,True,,0.8,0.9,0.7,,0.6,0.7,0.9,0.7,0.7,0.8,0.999,0.1,0.4
+2022-91,2022,Democrats will not have control of the US Senate after the midterm election,World Politics,Bruce,False,,0.8,0.9,0.7,,0.6,0.8,0.9,0.8,0.7,0.8,0.999,0.1,0.2
+2022-92,2022,Donald Trump will recieve at least 1 vote in the selection of the Speaker of the US house of Representatives (Congress),World Politics,Lachy,False,,0.3,0.3,0.7,,0.1,0.35,0.9,0.7,0.7,0.9,0.65,0.1,0.5
+2022-93,2022,Donald Trump will release a book in 2022,World Politics,Rohan,False,,0.55,0.7,0.8,,0.2,0.8,0.9,0.55,0.8,0.9,0.15,0.5,0.55
+2022-94,2022,Trump will announce he will contest the Republican presidential candidacy and launch an NFT,World Politics,James and Christine,True,,0.3,0.4,0.7,,0.05,0.9,0.6,0.5,0.7,0.2,0.001,0.5,0.1
+2022-95,2022,China will invade Taiwan,World Politics,"Iain, James and Christine",False,,0.35,0.2,0.7,,0.6,0.4,0.7,0.05,0.7,0.2,0.001,0.1,0.5
+2022-96,2022,A nuclear weapon will be detonated for any purpose (including a test) somewhere on earth or in space,World Politics,Lachy,False,,0.1,0.4,0.1,,0.2,0.7,0.8,0.3,0.1,0.1,0.15,0.5,0.6
+2022-97,2022,Iran will announce it has produced a nuclear weapon,World Politics,Lachy,False,,0.45,0.3,0.1,,0.2,0.7,0.6,0.3,0.1,0.1,0.15,0.5,0.6
+2022-98,2022,One or more of the G12 member countries will have diplomatically recognised Taiwan,World Politics,Andrew,False,,0.15,0.2,0.1,,0.2,0.75,0.4,0.3,0.1,0.6,0.15,0.5,0.6
+2022-99,2022,"Russia will have invaded Ukraine (as reported by CNN, BBC, Guardian or NYT)",World Politics,"Andrew, Iain, James and Christine",True,,0.6,0.4,0.95,,0.8,0.7,0.8,0.8,0.95,0.7,0.65,0.1,0.6
+2022-100,2022,The US will have gone to battle with China or Russia ( nuclear battle acceptable) agreed upon by at least half the people attending 2022 predictions,World Politics,Rohan,False,,0.3,0.1,0.1,,0.1,0.6,0.5,0.1,0.1,0.2,0.001,0.1,0.2
+2022-101,2022,There is an assassination attempt on Xi Jinping as reported in The Guardian,World Politics,Jac,False,,0.15,0.4,0.05,,0.1,0.35,0.3,0.5,0.05,0.1,0.001,0.1,0.45
+2022-102,2022,Bolsanaro wins the next Brazilian elections,World Politics,Jac,False,,0.4,0.3,0.4,,0.4,0.75,0.8,0.3,0.4,0.2,0.65,0.1,0.6
 2023-1,2023,Cate Blanchett will win best actress in the Academy Awards.,Entertainment,Gael,False,,0.3,0.9,0.1,,0.4,0.9,0.5,0.5,0.5,0.8,0.5,0.7,0.38
 2023-2,2023,The farthest paper airplane flight will be broken (as reported by Guinness World Records),Entertainment,Kate,True,,0.8,0.1,0.5,,0.7,0.7,0.5,0.65,0.5,0.8,0.5,0.5,0.999
 2023-3,2023,"Meghan and/or harry will post on social media content relating to the Coronation of King Charles III that, states or implies that Queen Elizabeth 2 'would have wanted them / is looking down from heaven wanting them' at the coronation, and/or describes a counter-ceremony with dubious historical precident performed by harry, meghan or their children to mark the occasion, and/or indicates that their presence at the coronation was prevented by 'deep palace' operatives or similar.",Entertainment,Lachy,False,,0.45,0.1,0.2,,0.4,0.5,0.4,0.52,0.35,0.9,0.7,0.3,0.5
