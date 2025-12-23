@@ -15,9 +15,6 @@
 
   $effect(() => {
     dataReady.then(() => {
-      if (!selectedYear && years.length > 0) {
-        selectedYear = years[0]
-      }
       loading = false
     }).catch(e => {
       error = e.message
@@ -26,9 +23,13 @@
   })
 
   const filteredData = $derived.by(() => {
-    if (!gameData || !selectedYear) return []
+    if (!gameData) return []
 
-    let filtered = gameData.filter(aq.escape(d => d.year === selectedYear))
+    let filtered = gameData
+
+    if (selectedYear) {
+      filtered = filtered.filter(aq.escape(d => d.year === selectedYear))
+    }
 
     if (selectedCategory) {
       filtered = filtered.filter(aq.escape(d => d.category === selectedCategory))
@@ -121,7 +122,7 @@
     </div>
 
     <div class="text-text-dim text-sm">
-      Showing {filteredData.length} statements for {selectedYear}{#if selectedCategory} in {selectedCategory}{/if}{#if selectedProposer} by {selectedProposer}{/if}
+      Showing {filteredData.length} statements{#if selectedYear} for {selectedYear}{:else} across all years{/if}{#if selectedCategory} in {selectedCategory}{/if}{#if selectedProposer} by {selectedProposer}{/if}
     </div>
   {/if}
 </div>

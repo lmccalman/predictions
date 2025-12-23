@@ -15,9 +15,6 @@
 
   $effect(() => {
     dataReady.then(() => {
-      if (!selectedYear && years.length > 0) {
-        selectedYear = years[0]
-      }
       loading = false
     }).catch(e => {
       error = e.message
@@ -26,9 +23,13 @@
   })
 
   const scoreData = $derived.by(() => {
-    if (!gameData || !selectedYear) return []
+    if (!gameData) return []
 
-    let filtered = gameData.filter(aq.escape(d => d.year === selectedYear && d.outcome !== null))
+    let filtered = gameData.filter(aq.escape(d => d.outcome !== null))
+
+    if (selectedYear) {
+      filtered = filtered.filter(aq.escape(d => d.year === selectedYear))
+    }
 
     if (selectedCategory) {
       filtered = filtered.filter(aq.escape(d => d.category === selectedCategory))
@@ -134,7 +135,7 @@
       bind:selectedPlayers
     />
 
-    <PlotContainer title="Player Scores for {selectedYear}{selectedCategory ? ` - ${selectedCategory}` : ''}{selectedProposer ? ` (${selectedProposer})` : ''}">
+    <PlotContainer title="Player Scores{selectedYear ? ` for ${selectedYear}` : ' (All Years)'}{selectedCategory ? ` - ${selectedCategory}` : ''}{selectedProposer ? ` (${selectedProposer})` : ''}">
       <div bind:this={plotContainer} class="min-h-[300px] md:min-h-[400px]"></div>
     </PlotContainer>
 

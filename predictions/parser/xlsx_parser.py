@@ -243,6 +243,35 @@ def normalize_participant_name(name: str) -> str:
     return canonical if canonical else normalized
 
 
+def normalize_category(category: str) -> str:
+    """
+    Normalize category names by merging related categories.
+
+    Handles:
+    - "Aus politics", "world politics" -> "politics"
+    - "natural world" -> "nature"
+    - "celebrities" -> "entertainment"
+
+    Args:
+        category: The category to normalize
+
+    Returns:
+        The normalized category name
+    """
+    normalized = category.strip().lower()
+
+    category_mapping = {
+        "aus politics": "politics",
+        "world politics": "politics",
+        "natural world": "nature",
+        "celebrities": "entertainment",
+    }
+
+    canonical = category_mapping.get(normalized)
+
+    return canonical if canonical else normalized
+
+
 def detect_structure(xlsx_path: Path) -> SheetStructure:
     """
     Detect which xlsx structure format is used.
@@ -334,7 +363,7 @@ def extract_statements_2022_2024(filepath: Path, year: int) -> list[Statement]:
             id=global_id,
             year=year,
             text=str(row["Prediction"]).strip(),
-            category=str(row["Category"]).strip(),
+            category=normalize_category(str(row["Category"])),
             proposer=proposer,
         )
         statements.append(statement)
@@ -402,7 +431,7 @@ def extract_statements_2025(filepath: Path, year: int) -> list[Statement]:
             id=global_id,
             year=year,
             text=str(row["Prediction"]).strip(),
-            category=str(row["Category"]).strip(),
+            category=normalize_category(str(row["Category"])),
             proposer=proposer,
         )
         statements.append(statement)

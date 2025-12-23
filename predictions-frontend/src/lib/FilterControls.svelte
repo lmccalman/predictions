@@ -46,6 +46,7 @@
           class="bg-panel-inset border border-panel-border rounded px-3 py-3 md:py-2 text-text-primary min-h-[44px] md:min-h-0
             focus:border-phosphor-green focus:outline-none focus:ring-2 focus:ring-phosphor-green/20"
         >
+          <option value={null}>All</option>
           {#each years as year}
             <option value={year}>{year}</option>
           {/each}
