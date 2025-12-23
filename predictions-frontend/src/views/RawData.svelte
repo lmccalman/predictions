@@ -2,6 +2,7 @@
   import * as aq from 'arquero'
   import FilterControls from "../lib/FilterControls.svelte"
   import DisplayToggle from "../lib/DisplayToggle.svelte"
+  import Modal from "../lib/Modal.svelte"
   import { dataReady, gameData, years, players, playerColors } from '../lib/gameDataStore.svelte.js'
   import { calculateScore, formatScore, formatProbability } from '../utils/scoring.js'
 
@@ -12,6 +13,7 @@
   let showScores = $state(false)
   let loading = $state(true)
   let error = $state(null)
+  let selectedRow = $state(null)
 
   $effect(() => {
     dataReady.then(() => {
@@ -97,7 +99,10 @@
           </thead>
           <tbody>
             {#each filteredData as row, rowIndex}
-              <tr class="border-b border-panel-border/50 hover:bg-panel-mid/50 transition-colors duration-100">
+              <tr
+                class="border-b border-panel-border/50 hover:bg-panel-mid/50 transition-colors duration-100 cursor-pointer"
+                onclick={() => selectedRow = row}
+              >
                 <td class="px-2 md:px-3 py-2 font-mono text-text-secondary sticky left-0 bg-panel-inset z-10">{row.id}</td>
                 <td class="px-2 md:px-3 py-2 text-text-primary max-w-[500px] break-words">{row.text}</td>
                 <td class="px-2 md:px-3 py-2 text-text-secondary">{row.category}</td>
@@ -124,5 +129,67 @@
     <div class="text-text-dim text-sm">
       Showing {filteredData.length} statements{#if selectedYear} for {selectedYear}{:else} across all years{/if}{#if selectedCategory} in {selectedCategory}{/if}{#if selectedProposer} by {selectedProposer}{/if}
     </div>
+
+    <Modal open={selectedRow !== null} onClose={() => selectedRow = null}>
+      {#if selectedRow}
+        <div class="p-4 flex flex-col gap-4">
+          <!-- Statement text -->
+          <div>
+            <div class="text-xs text-text-dim uppercase tracking-wider mb-1">Statement</div>
+            <div class="text-text-primary text-base">{selectedRow.text}</div>
+          </div>
+
+          <!-- Metadata row -->
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <div class="text-xs text-text-dim uppercase tracking-wider mb-1">ID</div>
+              <div class="font-mono text-text-secondary">{selectedRow.id}</div>
+            </div>
+            <div>
+              <div class="text-xs text-text-dim uppercase tracking-wider mb-1">Year</div>
+              <div class="text-text-secondary">{selectedRow.year}</div>
+            </div>
+            <div>
+              <div class="text-xs text-text-dim uppercase tracking-wider mb-1">Category</div>
+              <div class="text-text-secondary">{selectedRow.category}</div>
+            </div>
+            <div>
+              <div class="text-xs text-text-dim uppercase tracking-wider mb-1">Proposer</div>
+              <div class="text-text-secondary">{selectedRow.proposer}</div>
+            </div>
+          </div>
+
+          <!-- Outcome -->
+          <div>
+            <div class="text-xs text-text-dim uppercase tracking-wider mb-1">Outcome</div>
+            <div class="font-mono text-lg {selectedRow.outcome === true ? 'text-phosphor-green' : selectedRow.outcome === false ? 'text-phosphor-red' : 'text-text-dim'}">
+              {formatOutcome(selectedRow.outcome)}
+            </div>
+          </div>
+
+          <!-- Predictions -->
+          <div>
+            <div class="text-xs text-text-dim uppercase tracking-wider mb-2">Predictions</div>
+            <div class="flex flex-col gap-2">
+              {#each players as player, i}
+                {@const prediction = selectedRow[player]}
+                {@const score = calculateScore(prediction, selectedRow.outcome)}
+                <div class="flex items-center justify-between py-2 px-3 bg-panel-inset rounded border border-panel-border/50">
+                  <span class="font-medium" style="color: {playerColors[i]}">{player}</span>
+                  <div class="flex items-center gap-4">
+                    <span class="font-mono text-text-secondary">{formatProbability(prediction)}</span>
+                    {#if selectedRow.outcome !== null}
+                      <span class="font-mono text-sm {score >= 0 ? 'text-phosphor-green' : 'text-phosphor-red'}">
+                        {formatScore(score)}
+                      </span>
+                    {/if}
+                  </div>
+                </div>
+              {/each}
+            </div>
+          </div>
+        </div>
+      {/if}
+    </Modal>
   {/if}
 </div>
