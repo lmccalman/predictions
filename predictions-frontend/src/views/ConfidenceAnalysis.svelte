@@ -14,9 +14,9 @@
   let loading = $state(true)
   let error = $state(null)
 
-  // Bin configuration
+  // Bin configuration - confidence ranges from 0.5 to 1.0
   let numBins = $state(5)
-  const binWidth = $derived(1 / numBins)
+  const binWidth = $derived(0.5 / numBins)
 
   $effect(() => {
     dataReady.then(() => {
@@ -28,17 +28,15 @@
   })
 
   /**
-   * Calculate binary entropy of a prediction.
-   * H(p) = -p*log2(p) - (1-p)*log2(1-p)
-   * Returns 0 for p=0 or p=1 (high confidence), 1 for p=0.5 (low confidence)
+   * Calculate confidence as max(P, 1-P).
+   * Returns 0.5 for p=0.5 (uncertain), 1.0 for p=0 or p=1 (confident)
    */
-  function calculateEntropy(p) {
-    if (p <= 0 || p >= 1) return 0
-    return -p * Math.log2(p) - (1 - p) * Math.log2(1 - p)
+  function calculateConfidence(p) {
+    return Math.max(p, 1 - p)
   }
 
-  // Calculate score by entropy bin for each player
-  const entropyData = $derived.by(() => {
+  // Calculate score by confidence bin for each player
+  const confidenceData = $derived.by(() => {
     if (!gameData) return []
 
     // Filter to resolved statements only
@@ -64,19 +62,19 @@
 
       const playerColor = playerColors[players.indexOf(player)]
 
-      // Group predictions into bins by entropy
+      // Group predictions into bins by confidence (0.5 to 1.0)
       const bins = Array.from({ length: numBins }, () => ({ totalScore: 0, count: 0 }))
 
       for (const row of rows) {
         const prediction = row[player]
         if (prediction == null || prediction < 0 || prediction > 1) continue
 
-        const entropy = calculateEntropy(prediction)
+        const confidence = calculateConfidence(prediction)
         const score = calculateScore(prediction, row.outcome)
         if (score === null || !isFinite(score)) continue
 
-        // Determine which bin this entropy falls into (entropy is 0-1)
-        const binIndex = entropy === 1 ? numBins - 1 : Math.floor(entropy / binWidth)
+        // Determine which bin this confidence falls into (confidence is 0.5-1.0)
+        const binIndex = confidence === 1 ? numBins - 1 : Math.floor((confidence - 0.5) / binWidth)
 
         bins[binIndex].totalScore += score
         bins[binIndex].count++
@@ -85,14 +83,14 @@
       // Convert bins to data points
       for (let i = 0; i < numBins; i++) {
         const bin = bins[i]
-        const binCenter = (i + 0.5) * binWidth
-        const binStart = i * binWidth
-        const binEnd = (i + 1) * binWidth
+        const binStart = 0.5 + i * binWidth
+        const binEnd = 0.5 + (i + 1) * binWidth
+        const binCenter = (binStart + binEnd) / 2
 
         results.push({
           player,
           binCenter,
-          binLabel: `${binStart.toFixed(2)}-${binEnd.toFixed(2)}`,
+          binLabel: `${(binStart * 100).toFixed(0)}%-${(binEnd * 100).toFixed(0)}%`,
           totalScore: bin.totalScore,
           count: bin.count,
           color: playerColor
@@ -150,7 +148,7 @@
 
     // Reference line at y=0
     const zeroLine = [
-      { x: 0, y: 0 },
+      { x: 0.5, y: 0 },
       { x: 1, y: 0 }
     ]
 
@@ -159,10 +157,11 @@
       height: plotHeight,
       style: { background: 'transparent', color: '#9a9a9a', fontFamily: 'IBM Plex Sans' },
       x: {
-        label: 'Entropy (0 = confident, 1 = uncertain)',
-        domain: [0, 1],
+        label: 'Confidence: max(P, 1-P)',
+        domain: [0.5, 1],
         grid: true,
-        gridColor: '#2a2a2f'
+        gridColor: '#2a2a2f',
+        tickFormat: d => `${(d * 100).toFixed(0)}%`
       },
       y: {
         label: 'Points accrued',
@@ -180,7 +179,7 @@
           strokeDasharray: '4,4'
         }),
         // Player lines
-        Plot.line(entropyData, {
+        Plot.line(confidenceData, {
           x: 'binCenter',
           y: 'totalScore',
           stroke: 'player',
@@ -188,12 +187,12 @@
           curve: 'linear'
         }),
         // Points at each bin
-        Plot.dot(entropyData, {
+        Plot.dot(confidenceData, {
           x: 'binCenter',
           y: 'totalScore',
           fill: 'player',
           r: isMobile ? 4 : 5,
-          title: d => `${d.player}\nEntropy: ${d.binLabel}\nPoints: ${d.totalScore >= 0 ? '+' : ''}${d.totalScore.toFixed(2)}\n(${d.count} predictions)`
+          title: d => `${d.player}\nConfidence: ${d.binLabel}\nPoints: ${d.totalScore >= 0 ? '+' : ''}${d.totalScore.toFixed(2)}\n(${d.count} predictions)`
         })
       ]
     })
@@ -246,7 +245,7 @@
 
     <div class="text-text-dim text-sm">
       Based on {totalCount} resolved statements.
-      Entropy measures prediction uncertainty: 0 = confident (near 0% or 100%), 1 = uncertain (near 50%).
+      Confidence is max(P, 1-P): 50% = uncertain, 100% = confident.
       Hover over points for details.
     </div>
   {/if}
