@@ -1,43 +1,74 @@
-# Svelte + Vite
+# Predictions Frontend
 
-This template should help get you started developing with Svelte in Vite.
+Interactive web frontend for the family prediction game, built with Svelte 5 and Vite.
 
-## Recommended IDE Setup
+## Setup
 
-[VS Code](https://code.visualstudio.com/) + [Svelte](https://marketplace.visualstudio.com/items?itemName=svelte.svelte-vscode).
-
-## Need an official Svelte framework?
-
-Check out [SvelteKit](https://github.com/sveltejs/kit#readme), which is also powered by Vite. Deploy anywhere with its serverless-first approach and adapt to various platforms, with out of the box support for TypeScript, SCSS, and Less, and easily-added support for mdsvex, GraphQL, PostCSS, Tailwind CSS, and more.
-
-## Technical considerations
-
-**Why use this over SvelteKit?**
-
-- It brings its own routing solution which might not be preferable for some users.
-- It is first and foremost a framework that just happens to use Vite under the hood, not a Vite app.
-
-This template contains as little as possible to get started with Vite + Svelte, while taking into account the developer experience with regards to HMR and intellisense. It demonstrates capabilities on par with the other `create-vite` templates and is a good starting point for beginners dipping their toes into a Vite + Svelte project.
-
-Should you later need the extended capabilities and extensibility provided by SvelteKit, the template has been structured similarly to SvelteKit so that it is easy to migrate.
-
-**Why include `.vscode/extensions.json`?**
-
-Other templates indirectly recommend extensions via the README, but this file allows VS Code to prompt the user to install the recommended extension upon opening the project.
-
-**Why enable `checkJs` in the JS template?**
-
-It is likely that most cases of changing variable types in runtime are likely to be accidental, rather than deliberate. This provides advanced typechecking out of the box. Should you like to take advantage of the dynamically-typed nature of JavaScript, it is trivial to change the configuration.
-
-**Why is HMR not preserving my local component state?**
-
-HMR state preservation comes with a number of gotchas! It has been disabled by default in both `svelte-hmr` and `@sveltejs/vite-plugin-svelte` due to its often surprising behavior. You can read the details [here](https://github.com/sveltejs/svelte-hmr/tree/master/packages/svelte-hmr#preservation-of-local-state).
-
-If you have state that's important to retain within a component, consider creating an external store which would not be replaced by HMR.
-
-```js
-// store.js
-// An extremely simple external store
-import { writable } from 'svelte/store'
-export default writable(0)
+```bash
+npm install
 ```
+
+## Development
+
+```bash
+npm run dev          # Start dev server
+npm run build        # Build for production
+npm run preview      # Preview production build
+```
+
+## Data Encryption
+
+The game data is encrypted client-side to protect it even when hosted publicly. The Arrow data file is encrypted with AES-256-GCM using a password-derived key.
+
+### How It Works
+
+1. **Build time**: The Arrow file is encrypted using a password
+2. **Runtime**: Users enter the password, which decrypts the data in the browser
+3. **Security**: Without the correct password, the hosted `.encrypted` file is unreadable
+
+### Setting Up a Password
+
+1. **Generate a password hash** by opening `generate-password-hash.html` in a browser
+2. Enter your chosen password and copy the output
+3. Update `src/lib/authStore.svelte.js` with the generated salt and hash:
+
+```javascript
+const PASSWORD_HASH = {
+  salt: 'your-generated-salt',
+  hash: 'your-generated-hash',
+  iterations: 100000,
+}
+```
+
+### Encrypting the Data
+
+After exporting Arrow data from the backend, encrypt it:
+
+```bash
+npm run encrypt "your-password"
+```
+
+This reads `public/game_data.arrow` and outputs `public/game_data.encrypted`.
+
+### Full Build Workflow
+
+```bash
+# 1. Export data from backend (from repo root)
+uv run python main.py
+
+# 2. Encrypt the data (from predictions-frontend/)
+cd predictions-frontend
+npm run encrypt "your-password"
+
+# 3. Build for production
+npm run build
+```
+
+### Technical Details
+
+- **Encryption**: AES-256-GCM (authenticated encryption)
+- **Key derivation**: PBKDF2 with SHA-256, 100,000 iterations
+- **File format**: 16-byte salt + 12-byte IV + encrypted data (includes auth tag)
+- **Browser API**: Web Crypto API (native, no external dependencies)
+
+The unencrypted `game_data.arrow` is gitignored - only the encrypted file should be committed and deployed.

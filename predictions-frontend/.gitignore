@@ -22,3 +22,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Only commit encrypted data file (game_data.encrypted), not unencrypted
+public/game_data.arrow

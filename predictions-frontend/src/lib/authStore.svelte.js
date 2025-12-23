@@ -10,15 +10,20 @@ const PASSWORD_HASH = {
   iterations: 100000,
 }
 
-const STORAGE_KEY = 'predictions_auth'
-
-// Check localStorage for existing auth
-const storedAuth = typeof localStorage !== 'undefined'
-  ? localStorage.getItem(STORAGE_KEY)
-  : null
+// Password stored in memory only (not localStorage) for data decryption
+let storedPassword = null
 
 // Use object pattern for exportable reactive state (Svelte 5 requirement)
-export const auth = $state({ authenticated: storedAuth === 'true' })
+// Always start unauthenticated - password required to decrypt data
+export const auth = $state({ authenticated: false })
+
+/**
+ * Get the stored password for decryption.
+ * Returns null if not authenticated or password not available.
+ */
+export function getPassword() {
+  return storedPassword
+}
 
 // Convert hex string to Uint8Array
 function hexToBytes(hex) {
@@ -74,8 +79,8 @@ export async function verifyPassword(password) {
   const valid = computedHash === PASSWORD_HASH.hash
 
   if (valid) {
+    storedPassword = password
     auth.authenticated = true
-    localStorage.setItem(STORAGE_KEY, 'true')
   }
 
   return valid
@@ -83,6 +88,6 @@ export async function verifyPassword(password) {
 
 // Log out (clear auth state)
 export function logout() {
+  storedPassword = null
   auth.authenticated = false
-  localStorage.removeItem(STORAGE_KEY)
 }

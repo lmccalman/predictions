@@ -1,22 +1,39 @@
 <script>
   import { verifyPassword } from './authStore.svelte.js'
+  import { loadData } from './gameDataStore.svelte.js'
 
   let password = $state('')
   let error = $state('')
   let checking = $state(false)
+  let status = $state('')
 
   async function handleSubmit(event) {
     event.preventDefault()
     error = ''
     checking = true
+    status = 'Verifying...'
 
     const valid = await verifyPassword(password)
 
-    checking = false
     if (!valid) {
+      checking = false
       error = 'Incorrect password'
       password = ''
+      status = ''
+      return
     }
+
+    // Password verified - now load and decrypt data
+    status = 'Loading data...'
+    try {
+      await loadData(password)
+    } catch (err) {
+      checking = false
+      error = 'Failed to decrypt data'
+      password = ''
+      status = ''
+    }
+    // If loadData succeeds, auth.authenticated is already true from verifyPassword
   }
 
   function handleKeydown(event) {
@@ -62,7 +79,7 @@
                disabled:opacity-50 disabled:cursor-not-allowed
                transition-colors"
       >
-        {checking ? 'Checking...' : 'Enter'}
+        {checking ? status : 'Enter'}
       </button>
     </form>
   </div>
