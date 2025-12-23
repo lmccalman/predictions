@@ -6,7 +6,7 @@
   <span class="text-xs font-medium uppercase tracking-wider text-text-secondary">{label}</span>
   <button
     onclick={() => showScores = !showScores}
-    class="flex items-center gap-2 px-3 py-2 rounded border transition-all duration-150
+    class="flex items-center gap-2 px-3 py-3 md:py-2 rounded border transition-all duration-150 min-h-[44px] md:min-h-0
       {showScores
         ? 'border-phosphor-green bg-phosphor-green/10 text-phosphor-green'
         : 'border-panel-border text-text-secondary hover:border-text-secondary'}"

@@ -43,7 +43,7 @@
       <ControlGroup label="Year">
         <select
           bind:value={selectedYear}
-          class="bg-panel-inset border border-panel-border rounded px-3 py-2 text-text-primary
+          class="bg-panel-inset border border-panel-border rounded px-3 py-3 md:py-2 text-text-primary min-h-[44px] md:min-h-0
             focus:border-phosphor-green focus:outline-none focus:ring-2 focus:ring-phosphor-green/20"
         >
           {#each years as year}
@@ -55,7 +55,7 @@
       <ControlGroup label="Category">
         <select
           bind:value={selectedCategory}
-          class="bg-panel-inset border border-panel-border rounded px-3 py-2 text-text-primary
+          class="bg-panel-inset border border-panel-border rounded px-3 py-3 md:py-2 text-text-primary min-h-[44px] md:min-h-0
             focus:border-phosphor-green focus:outline-none focus:ring-2 focus:ring-phosphor-green/20"
         >
           <option value={null}>All</option>
@@ -68,7 +68,7 @@
       <ControlGroup label="Proposer">
         <select
           bind:value={selectedProposer}
-          class="bg-panel-inset border border-panel-border rounded px-3 py-2 text-text-primary
+          class="bg-panel-inset border border-panel-border rounded px-3 py-3 md:py-2 text-text-primary min-h-[44px] md:min-h-0
             focus:border-phosphor-green focus:outline-none focus:ring-2 focus:ring-phosphor-green/20"
         >
           <option value={null}>All</option>
@@ -88,15 +88,15 @@
         <div class="flex gap-2">
           <button
             onclick={selectAllPlayers}
-            class="px-2 py-1 text-xs rounded border border-panel-border text-text-secondary
-              hover:border-text-secondary hover:text-text-primary transition-all duration-150"
+            class="px-3 py-2 md:px-2 md:py-1 text-xs rounded border border-panel-border text-text-secondary
+              hover:border-text-secondary hover:text-text-primary transition-all duration-150 min-h-[36px] md:min-h-0"
           >
             Select All
           </button>
           <button
             onclick={clearAllPlayers}
-            class="px-2 py-1 text-xs rounded border border-panel-border text-text-secondary
-              hover:border-text-secondary hover:text-text-primary transition-all duration-150"
+            class="px-3 py-2 md:px-2 md:py-1 text-xs rounded border border-panel-border text-text-secondary
+              hover:border-text-secondary hover:text-text-primary transition-all duration-150 min-h-[36px] md:min-h-0"
           >
             Clear All
           </button>
@@ -105,7 +105,7 @@
           {#each players as player, i}
             <button
               onclick={() => togglePlayer(player)}
-              class="px-3 py-1.5 text-sm rounded border transition-all duration-150
+              class="px-3 py-2.5 md:py-1.5 text-sm rounded border transition-all duration-150 min-h-[44px] md:min-h-0
                 {selectedPlayers.includes(player)
                   ? 'border-current bg-current/10 shadow-glow-green'
                   : 'border-panel-border text-text-dim hover:border-text-secondary'}"

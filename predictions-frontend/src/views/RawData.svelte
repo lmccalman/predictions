@@ -79,14 +79,14 @@
         <table class="w-full text-sm">
           <thead>
             <tr class="bg-panel-mid border-b border-panel-border">
-              <th class="px-3 py-2 text-left text-xs font-semibold uppercase tracking-wider text-text-secondary sticky left-0 bg-panel-mid z-10 min-w-[60px]">ID</th>
-              <th class="px-3 py-2 text-left text-xs font-semibold uppercase tracking-wider text-text-secondary min-w-[300px] max-w-[500px]">Statement</th>
-              <th class="px-3 py-2 text-left text-xs font-semibold uppercase tracking-wider text-text-secondary min-w-[100px]">Category</th>
-              <th class="px-3 py-2 text-left text-xs font-semibold uppercase tracking-wider text-text-secondary min-w-[80px]">Proposer</th>
-              <th class="px-3 py-2 text-center text-xs font-semibold uppercase tracking-wider text-text-secondary min-w-[60px]">Outcome</th>
+              <th class="px-2 md:px-3 py-2 text-left text-xs font-semibold uppercase tracking-wider text-text-secondary sticky left-0 bg-panel-mid z-10 min-w-[50px] md:min-w-[60px]">ID</th>
+              <th class="px-2 md:px-3 py-2 text-left text-xs font-semibold uppercase tracking-wider text-text-secondary min-w-[200px] md:min-w-[300px] max-w-[500px]">Statement</th>
+              <th class="px-2 md:px-3 py-2 text-left text-xs font-semibold uppercase tracking-wider text-text-secondary min-w-[80px] md:min-w-[100px]">Category</th>
+              <th class="px-2 md:px-3 py-2 text-left text-xs font-semibold uppercase tracking-wider text-text-secondary min-w-[70px] md:min-w-[80px]">Proposer</th>
+              <th class="px-2 md:px-3 py-2 text-center text-xs font-semibold uppercase tracking-wider text-text-secondary min-w-[55px] md:min-w-[60px]">Outcome</th>
               {#each players.filter(p => selectedPlayers.includes(p)) as player, i}
                 <th
-                  class="px-3 py-2 text-center text-xs font-semibold uppercase tracking-wider min-w-[60px]"
+                  class="px-2 md:px-3 py-2 text-center text-xs font-semibold uppercase tracking-wider min-w-[50px] md:min-w-[60px]"
                   style="color: {playerColors[players.indexOf(player)]}"
                 >
                   {player}
@@ -97,16 +97,16 @@
           <tbody>
             {#each filteredData as row, rowIndex}
               <tr class="border-b border-panel-border/50 hover:bg-panel-mid/50 transition-colors duration-100">
-                <td class="px-3 py-2 font-mono text-text-secondary sticky left-0 bg-panel-inset z-10">{row.id}</td>
-                <td class="px-3 py-2 text-text-primary max-w-[500px] break-words">{row.text}</td>
-                <td class="px-3 py-2 text-text-secondary">{row.category}</td>
-                <td class="px-3 py-2 text-text-secondary">{row.proposer}</td>
-                <td class="px-3 py-2 text-center font-mono {row.outcome === true ? 'text-phosphor-green' : row.outcome === false ? 'text-phosphor-red' : 'text-text-dim'}">
+                <td class="px-2 md:px-3 py-2 font-mono text-text-secondary sticky left-0 bg-panel-inset z-10">{row.id}</td>
+                <td class="px-2 md:px-3 py-2 text-text-primary max-w-[500px] break-words">{row.text}</td>
+                <td class="px-2 md:px-3 py-2 text-text-secondary">{row.category}</td>
+                <td class="px-2 md:px-3 py-2 text-text-secondary">{row.proposer}</td>
+                <td class="px-2 md:px-3 py-2 text-center font-mono {row.outcome === true ? 'text-phosphor-green' : row.outcome === false ? 'text-phosphor-red' : 'text-text-dim'}">
                   {formatOutcome(row.outcome)}
                 </td>
                 {#each players.filter(p => selectedPlayers.includes(p)) as player}
                   {@const score = showScores ? calculateScore(row[player], row.outcome) : null}
-                  <td class="px-3 py-2 text-center font-mono
+                  <td class="px-2 md:px-3 py-2 text-center font-mono
                     {showScores && score !== null
                       ? (score >= 0 ? 'text-phosphor-green' : 'text-phosphor-red')
                       : 'text-text-secondary'}">

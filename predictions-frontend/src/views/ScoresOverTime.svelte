@@ -67,13 +67,32 @@
   })
 
   let plotContainer = $state(null)
+  let containerWidth = $state(600)
+
+  // Track container width for responsive plots
+  $effect(() => {
+    if (!plotContainer) return
+
+    const observer = new ResizeObserver(entries => {
+      const entry = entries[0]
+      if (entry) {
+        containerWidth = entry.contentRect.width
+      }
+    })
+
+    observer.observe(plotContainer)
+    return () => observer.disconnect()
+  })
 
   $effect(() => {
-    if (!plotContainer || scoreData.length === 0) return
+    if (!plotContainer || scoreData.length === 0 || containerWidth < 100) return
+
+    const isMobile = containerWidth < 500
+    const plotHeight = isMobile ? 300 : 400
 
     const plot = Plot.plot({
-      width: 700,
-      height: 400,
+      width: containerWidth,
+      height: plotHeight,
       style: { background: 'transparent', color: '#9a9a9a', fontFamily: 'IBM Plex Sans' },
       x: { label: null, tickSize: 0 },
       y: { label: 'Total Score', grid: true, gridColor: '#2a2a2f' },
@@ -92,7 +111,7 @@
           text: d => formatScore(d.score),
           dy: d => d.score >= 0 ? -8 : 8,
           fill: d => d.score >= 0 ? '#00ff88' : '#ff4444',
-          fontSize: 12,
+          fontSize: isMobile ? 10 : 12,
           fontWeight: 600
         })
       ]
@@ -116,7 +135,7 @@
     />
 
     <PlotContainer title="Player Scores for {selectedYear}{selectedCategory ? ` - ${selectedCategory}` : ''}{selectedProposer ? ` (${selectedProposer})` : ''}">
-      <div bind:this={plotContainer} class="min-h-[400px]"></div>
+      <div bind:this={plotContainer} class="min-h-[300px] md:min-h-[400px]"></div>
     </PlotContainer>
 
     {#if scoreData.length > 0}
