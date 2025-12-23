@@ -94,8 +94,9 @@
     const plot = Plot.plot({
       width: containerWidth,
       height: plotHeight,
+      marginBottom: isMobile ? 60 : 30,
       style: { background: 'transparent', color: '#9a9a9a', fontFamily: 'IBM Plex Sans' },
-      x: { label: null, tickSize: 0 },
+      x: { label: null, tickSize: 0, tickRotate: isMobile ? -45 : 0 },
       y: { label: 'Total Score', grid: true, gridColor: '#2a2a2f' },
       color: { domain: players, range: playerColors },
       marks: [
