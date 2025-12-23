@@ -174,6 +174,37 @@ def parse_outcome(value: Any) -> Optional[bool]:
     raise ValueError(f"Unexpected outcome type: {type(value).__name__}")
 
 
+def extract_first_proposer(name: str) -> str:
+    """
+    Extract the first name from a multi-person proposer string.
+
+    Handles formats like:
+    - "james and chris" -> "james"
+    - "iain, christine and andrew" -> "iain"
+    - "alice & bob" -> "alice"
+
+    Args:
+        name: The proposer name(s) to parse
+
+    Returns:
+        The first proposer name
+    """
+    import re
+
+    # Split on common separators: ", " or " and " or " & "
+    # Use regex to split on any of these patterns
+    parts = re.split(r"\s*,\s*|\s+and\s+|\s*&\s*", name, flags=re.IGNORECASE)
+
+    # Return the first non-empty part, stripped of whitespace
+    for part in parts:
+        stripped = part.strip()
+        if stripped:
+            return stripped
+
+    # Fallback to original if no parts found
+    return name.strip()
+
+
 def normalize_participant_name(name: str) -> str:
     """
     Normalize participant names to handle variations.
@@ -294,8 +325,8 @@ def extract_statements_2022_2024(filepath: Path, year: int) -> list[Statement]:
         # Convert ID to string
         statement_id = str(int(row["ID"]))
 
-        # Normalize proposer name
-        proposer = normalize_participant_name(str(row["Proposer"]))
+        # Extract first name if multiple proposers, then normalize
+        proposer = normalize_participant_name(extract_first_proposer(str(row["Proposer"])))
 
         # Create Statement object with globally unique ID (year-id)
         global_id = f"{year}-{statement_id}"
@@ -362,8 +393,8 @@ def extract_statements_2025(filepath: Path, year: int) -> list[Statement]:
         # Convert Number to string (this is the ID)
         statement_id = str(int(row["Number"]))
 
-        # Normalize proposer name (from Name or Author column)
-        proposer = normalize_participant_name(str(row[proposer_col]))
+        # Extract first name if multiple proposers, then normalize
+        proposer = normalize_participant_name(extract_first_proposer(str(row[proposer_col])))
 
         # Create Statement object with globally unique ID (year-id)
         global_id = f"{year}-{statement_id}"

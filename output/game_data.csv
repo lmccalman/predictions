@@ -20,12 +20,12 @@ id,year,text,category,proposer,outcome,outcome_date,Andrew,Bruce,Christine,David
 2022-19,2022,News Ltd will report on the emergence of a conspiracy theory relating to the Queen's death: that the palace is either secretly concealing her death or her continuing life,Celebrities,Lachy,False,,0.25,0.4,0.8,,0.05,0.85,0.5,0.05,0.8,0.1,0.001,0.1,0.5
 2022-20,2022,Julian Assange will be located in Australia,Celebrities,Andrew,False,,0.2,0.2,0.1,,0.05,0.55,0.3,0.2,0.1,0.2,0.15,0.1,0.3
 2022-21,2022,An alleged sexual predator will recieve an Emmy or Oscar by mainstream media (Andrew’s system),Celebrities,Rohan,False,,0.4,0.3,0.3,,0.2,0.7,0.6,0.2,0.3,0.8,0.65,0.1,0.6
-2022-22,2022,The Queen will die,Celebrities,James and Christine,True,,0.4,0.2,0.9,,0.3,0.7,0.7,0.05,0.9,0.9,0.35,0.1,0.3
-2022-23,2022,Ghislaine Maxwell will successfully strike a plea deal and reduce her aggregate sentence to no greater than 10 years with parole no greater than 5 years.,Celebrities,James and Christine,False,,0.45,0.7,0.7,,0.1,0.65,0.9,0.2,0.7,0.1,0.65,0.7,0.5
-2022-24,2022,Formal criminal charges will be laid against Prince Andrew for sex offenses,Celebrities,James and Christine,False,,0.6,0.2,0.7,,0.9,0.65,0.1,0.15,0.7,0.2,0.15,0.5,0.5
-2022-25,2022,Elizabeth Holmes will be sentenced to no greater than 15 years imprisonment.,Celebrities,James and Christine,True,,0.6,0.9,0.8,,0.5,0.7,0.9,0.7,0.8,0.9,0.85,0.5,0.7
-2022-26,2022,Meghan and Harry will separate,Celebrities,James and Christine,False,,0.2,0.1,0.2,,0.1,0.2,0.5,0.05,0.2,0.8,0.15,0.1,0.3
-2022-27,2022,Tom Holland and Zendaya will separate.,Celebrities,James and Christine,False,,0.6,0.6,0.2,,0.5,0.65,0.4,0.2,0.2,0.9,0.5,0.5,0.4
+2022-22,2022,The Queen will die,Celebrities,James,True,,0.4,0.2,0.9,,0.3,0.7,0.7,0.05,0.9,0.9,0.35,0.1,0.3
+2022-23,2022,Ghislaine Maxwell will successfully strike a plea deal and reduce her aggregate sentence to no greater than 10 years with parole no greater than 5 years.,Celebrities,James,False,,0.45,0.7,0.7,,0.1,0.65,0.9,0.2,0.7,0.1,0.65,0.7,0.5
+2022-24,2022,Formal criminal charges will be laid against Prince Andrew for sex offenses,Celebrities,James,False,,0.6,0.2,0.7,,0.9,0.65,0.1,0.15,0.7,0.2,0.15,0.5,0.5
+2022-25,2022,Elizabeth Holmes will be sentenced to no greater than 15 years imprisonment.,Celebrities,James,True,,0.6,0.9,0.8,,0.5,0.7,0.9,0.7,0.8,0.9,0.85,0.5,0.7
+2022-26,2022,Meghan and Harry will separate,Celebrities,James,False,,0.2,0.1,0.2,,0.1,0.2,0.5,0.05,0.2,0.8,0.15,0.1,0.3
+2022-27,2022,Tom Holland and Zendaya will separate.,Celebrities,James,False,,0.6,0.6,0.2,,0.5,0.65,0.4,0.2,0.2,0.9,0.5,0.5,0.4
 2022-28,2022,Donald Trump endorses on social media a movement that is called White Lives Matter,Celebrities,Jac,False,,0.3,0.3,0.8,,0.1,0.45,0.9,0.001,0.8,0.9,0.001,0.1,0.55
 2022-29,2022,Britney Spears returns under conservatorship,Celebrities,Jac,False,,0.1,0.1,0.05,,0.05,0.0,0.1,0.05,0.05,0.1,0.001,0.1,0.5
 2022-30,2022,"Taylor Swift and her partner separate, or announce they're expecting a child",Celebrities,Jac,False,,0.4,0.3,0.7,,0.1,0.6,0.7,0.1,0.7,0.9,0.15,0.5,0.2
@@ -92,12 +92,12 @@ id,year,text,category,proposer,outcome,outcome_date,Andrew,Bruce,Christine,David
 2022-91,2022,Democrats will not have control of the US Senate after the midterm election,World Politics,Bruce,False,,0.8,0.9,0.7,,0.6,0.8,0.9,0.8,0.7,0.8,0.999,0.1,0.2
 2022-92,2022,Donald Trump will recieve at least 1 vote in the selection of the Speaker of the US house of Representatives (Congress),World Politics,Lachy,False,,0.3,0.3,0.7,,0.1,0.35,0.9,0.7,0.7,0.9,0.65,0.1,0.5
 2022-93,2022,Donald Trump will release a book in 2022,World Politics,Rohan,False,,0.55,0.7,0.8,,0.2,0.8,0.9,0.55,0.8,0.9,0.15,0.5,0.55
-2022-94,2022,Trump will announce he will contest the Republican presidential candidacy and launch an NFT,World Politics,James and Christine,True,,0.3,0.4,0.7,,0.05,0.9,0.6,0.5,0.7,0.2,0.001,0.5,0.1
-2022-95,2022,China will invade Taiwan,World Politics,"Iain, James and Christine",False,,0.35,0.2,0.7,,0.6,0.4,0.7,0.05,0.7,0.2,0.001,0.1,0.5
+2022-94,2022,Trump will announce he will contest the Republican presidential candidacy and launch an NFT,World Politics,James,True,,0.3,0.4,0.7,,0.05,0.9,0.6,0.5,0.7,0.2,0.001,0.5,0.1
+2022-95,2022,China will invade Taiwan,World Politics,Iain,False,,0.35,0.2,0.7,,0.6,0.4,0.7,0.05,0.7,0.2,0.001,0.1,0.5
 2022-96,2022,A nuclear weapon will be detonated for any purpose (including a test) somewhere on earth or in space,World Politics,Lachy,False,,0.1,0.4,0.1,,0.2,0.7,0.8,0.3,0.1,0.1,0.15,0.5,0.6
 2022-97,2022,Iran will announce it has produced a nuclear weapon,World Politics,Lachy,False,,0.45,0.3,0.1,,0.2,0.7,0.6,0.3,0.1,0.1,0.15,0.5,0.6
 2022-98,2022,One or more of the G12 member countries will have diplomatically recognised Taiwan,World Politics,Andrew,False,,0.15,0.2,0.1,,0.2,0.75,0.4,0.3,0.1,0.6,0.15,0.5,0.6
-2022-99,2022,"Russia will have invaded Ukraine (as reported by CNN, BBC, Guardian or NYT)",World Politics,"Andrew, Iain, James and Christine",True,,0.6,0.4,0.95,,0.8,0.7,0.8,0.8,0.95,0.7,0.65,0.1,0.6
+2022-99,2022,"Russia will have invaded Ukraine (as reported by CNN, BBC, Guardian or NYT)",World Politics,Andrew,True,,0.6,0.4,0.95,,0.8,0.7,0.8,0.8,0.95,0.7,0.65,0.1,0.6
 2022-100,2022,The US will have gone to battle with China or Russia ( nuclear battle acceptable) agreed upon by at least half the people attending 2022 predictions,World Politics,Rohan,False,,0.3,0.1,0.1,,0.1,0.6,0.5,0.1,0.1,0.2,0.001,0.1,0.2
 2022-101,2022,There is an assassination attempt on Xi Jinping as reported in The Guardian,World Politics,Jac,False,,0.15,0.4,0.05,,0.1,0.35,0.3,0.5,0.05,0.1,0.001,0.1,0.45
 2022-102,2022,Bolsanaro wins the next Brazilian elections,World Politics,Jac,False,,0.4,0.3,0.4,,0.4,0.75,0.8,0.3,0.4,0.2,0.65,0.1,0.6

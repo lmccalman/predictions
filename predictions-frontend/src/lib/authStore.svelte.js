@@ -5,8 +5,8 @@
 // Generate a new hash by opening generate-password-hash.html in a browser
 // Then copy the output here.
 const PASSWORD_HASH = {
-  salt: 'e1b7193c821c6ff3fbc6595331fa5df5',
-  hash: 'd06c75f6c8d24dce4ea6816773a6784151f9c582282da172c91fc96d405675da',
+  salt: '99f8dffa2798bf72123a48447a465055',
+  hash: 'e263c39e7565c8e19b9bbf80fe4cb0c5fe1e961fa5b22a743e509163d10d92cc',
   iterations: 100000,
 }
 
