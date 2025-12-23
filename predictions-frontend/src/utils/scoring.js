@@ -49,12 +49,12 @@ export function formatScore(score) {
 }
 
 /**
- * Format a probability for display as percentage.
+ * Format a probability for display as decimal.
  *
  * @param {number|null|undefined} value - Probability value (0 to 1)
- * @returns {string} - Formatted percentage string
+ * @returns {string} - Formatted decimal string
  */
 export function formatProbability(value) {
   if (value === null || value === undefined || isNaN(value)) return '-'
-  return (value * 100).toFixed(0) + '%'
+  return value.toFixed(2)
 }
