@@ -9,7 +9,7 @@ export let gameData = null
 export let years = []
 
 // Load data immediately on module import
-export const dataReady = fetch('/game_data.arrow')
+export const dataReady = fetch(`${import.meta.env.BASE_URL}game_data.arrow`)
   .then(response => {
     if (!response.ok) {
       throw new Error(`Failed to fetch data: ${response.statusText}`)
