@@ -1,5 +1,6 @@
 <script>
   import * as aq from 'arquero'
+  import * as Plot from "@observablehq/plot"
   import FilterControls from "../lib/FilterControls.svelte"
   import DisplayToggle from "../lib/DisplayToggle.svelte"
   import Modal from "../lib/Modal.svelte"
@@ -14,6 +15,81 @@
   let loading = $state(true)
   let error = $state(null)
   let selectedRow = $state(null)
+  let plotContainer = $state(null)
+
+  // Prediction distribution data for the selected row
+  const predictionData = $derived.by(() => {
+    if (!selectedRow) return []
+    return players.map((player, i) => ({
+      player,
+      prediction: selectedRow[player],
+      color: playerColors[i]
+    })).filter(d => d.prediction != null)
+  })
+
+  // Render the prediction distribution plot
+  $effect(() => {
+    if (!plotContainer || !selectedRow || predictionData.length === 0) return
+
+    const plot = Plot.plot({
+      width: 400,
+      height: 100,
+      marginTop: 20,
+      marginBottom: 30,
+      marginLeft: 40,
+      marginRight: 20,
+      style: { background: 'transparent', color: '#9a9a9a', fontFamily: 'IBM Plex Sans' },
+      x: {
+        label: 'Prediction',
+        domain: [0, 1],
+        tickFormat: d => `${Math.round(d * 100)}%`,
+        grid: true,
+        gridColor: '#2a2a2f'
+      },
+      y: { axis: null },
+      color: { domain: players, range: playerColors },
+      marks: [
+        // Vertical line at 50% (prior)
+        Plot.ruleX([0.5], { stroke: '#4a4a4f', strokeWidth: 1, strokeDasharray: '4,3' }),
+        // Outcome indicator (if resolved)
+        ...(selectedRow.outcome !== null ? [
+          Plot.ruleX([selectedRow.outcome ? 1 : 0], {
+            stroke: selectedRow.outcome ? '#4ade80' : '#f87171',
+            strokeWidth: 3
+          }),
+          Plot.text([{ x: selectedRow.outcome ? 1 : 0 }], {
+            x: 'x',
+            y: 0,
+            text: selectedRow.outcome ? 'TRUE' : 'FALSE',
+            dy: 28,
+            fill: selectedRow.outcome ? '#4ade80' : '#f87171',
+            fontSize: 9,
+            fontWeight: 'bold'
+          })
+        ] : []),
+        // Player prediction dots
+        Plot.dot(predictionData, {
+          x: 'prediction',
+          y: 0,
+          fill: 'player',
+          r: 8,
+          title: d => `${d.player}: ${Math.round(d.prediction * 100)}%`
+        }),
+        // Labels above dots
+        Plot.text(predictionData, {
+          x: 'prediction',
+          y: 0,
+          text: d => d.player.charAt(0),
+          dy: -16,
+          fill: 'player',
+          fontSize: 11,
+          fontWeight: 'bold'
+        })
+      ]
+    })
+
+    plotContainer.replaceChildren(plot)
+  })
 
   $effect(() => {
     dataReady.then(() => {
@@ -165,6 +241,12 @@
             <div class="font-mono text-lg {selectedRow.outcome === true ? 'text-phosphor-green' : selectedRow.outcome === false ? 'text-phosphor-red' : 'text-text-dim'}">
               {formatOutcome(selectedRow.outcome)}
             </div>
+          </div>
+
+          <!-- Prediction Distribution Plot -->
+          <div>
+            <div class="text-xs text-text-dim uppercase tracking-wider mb-2">Prediction Distribution</div>
+            <div bind:this={plotContainer} class="bg-panel-inset rounded border border-panel-border/50 p-2"></div>
           </div>
 
           <!-- Predictions -->
