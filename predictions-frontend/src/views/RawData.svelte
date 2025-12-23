@@ -1,18 +1,18 @@
 <script>
   import * as aq from 'arquero'
-  import ControlGroup from "../lib/ControlGroup.svelte"
+  import FilterControls from "../lib/FilterControls.svelte"
+  import DisplayToggle from "../lib/DisplayToggle.svelte"
   import { dataReady, gameData, years, players, playerColors } from '../lib/gameDataStore.svelte.js'
   import { calculateScore, formatScore, formatProbability } from '../utils/scoring.js'
 
   let selectedYear = $state(null)
-  let selectedCategory = $state(null) // null means "All"
-  let selectedProposer = $state(null) // null means "All"
+  let selectedCategory = $state(null)
+  let selectedProposer = $state(null)
   let selectedPlayers = $state([...players])
   let showScores = $state(false)
   let loading = $state(true)
   let error = $state(null)
 
-  // Wait for data to be ready
   $effect(() => {
     dataReady.then(() => {
       if (!selectedYear && years.length > 0) {
@@ -23,17 +23,6 @@
       error = e.message
       loading = false
     })
-  })
-
-  // Get unique categories and proposers from the data
-  const categories = $derived.by(() => {
-    if (!gameData) return []
-    return [...new Set(gameData.array('category'))].filter(c => c).sort()
-  })
-
-  const proposers = $derived.by(() => {
-    if (!gameData) return []
-    return [...new Set(gameData.array('proposer'))].filter(p => p).sort()
   })
 
   const filteredData = $derived.by(() => {
@@ -51,22 +40,6 @@
 
     return filtered.objects()
   })
-
-  function togglePlayer(player) {
-    if (selectedPlayers.includes(player)) {
-      selectedPlayers = selectedPlayers.filter(p => p !== player)
-    } else {
-      selectedPlayers = [...selectedPlayers, player]
-    }
-  }
-
-  function selectAllPlayers() {
-    selectedPlayers = [...players]
-  }
-
-  function clearAllPlayers() {
-    selectedPlayers = []
-  }
 
   function formatScoreForRow(prediction, outcome) {
     const score = calculateScore(prediction, outcome)
@@ -88,102 +61,17 @@
   {:else if error}
     <div class="text-phosphor-red">Error loading data: {error}</div>
   {:else}
-    <!-- Controls -->
-    <div class="bg-panel-mid border border-panel-border rounded p-4">
-      <div class="flex flex-col gap-4">
-        <div class="flex flex-wrap gap-4 items-end">
-          <ControlGroup label="Year">
-            <select
-              bind:value={selectedYear}
-              class="bg-panel-inset border border-panel-border rounded px-3 py-2 text-text-primary
-                focus:border-phosphor-green focus:outline-none focus:ring-2 focus:ring-phosphor-green/20"
-            >
-              {#each years as year}
-                <option value={year}>{year}</option>
-              {/each}
-            </select>
-          </ControlGroup>
+    {#snippet displayToggle()}
+      <DisplayToggle bind:showScores />
+    {/snippet}
 
-          <ControlGroup label="Category">
-            <select
-              bind:value={selectedCategory}
-              class="bg-panel-inset border border-panel-border rounded px-3 py-2 text-text-primary
-                focus:border-phosphor-green focus:outline-none focus:ring-2 focus:ring-phosphor-green/20"
-            >
-              <option value={null}>All</option>
-              {#each categories as category}
-                <option value={category}>{category}</option>
-              {/each}
-            </select>
-          </ControlGroup>
-
-          <ControlGroup label="Proposer">
-            <select
-              bind:value={selectedProposer}
-              class="bg-panel-inset border border-panel-border rounded px-3 py-2 text-text-primary
-                focus:border-phosphor-green focus:outline-none focus:ring-2 focus:ring-phosphor-green/20"
-            >
-              <option value={null}>All</option>
-              {#each proposers as proposer}
-                <option value={proposer}>{proposer}</option>
-              {/each}
-            </select>
-          </ControlGroup>
-
-          <ControlGroup label="Display">
-            <button
-              onclick={() => showScores = !showScores}
-              class="flex items-center gap-2 px-3 py-2 rounded border transition-all duration-150
-                {showScores
-                  ? 'border-phosphor-green bg-phosphor-green/10 text-phosphor-green'
-                  : 'border-panel-border text-text-secondary hover:border-text-secondary'}"
-            >
-              <span class="w-8 h-5 rounded-full relative transition-colors duration-150
-                {showScores ? 'bg-phosphor-green/30' : 'bg-panel-inset'}">
-                <span class="absolute top-0.5 w-4 h-4 rounded-full transition-all duration-150
-                  {showScores ? 'left-3.5 bg-phosphor-green' : 'left-0.5 bg-text-dim'}"></span>
-              </span>
-              <span class="text-sm">{showScores ? 'Scores' : 'Probabilities'}</span>
-            </button>
-          </ControlGroup>
-        </div>
-
-        <ControlGroup label="Players">
-          <div class="flex flex-col gap-2">
-            <div class="flex gap-2">
-              <button
-                onclick={selectAllPlayers}
-                class="px-2 py-1 text-xs rounded border border-panel-border text-text-secondary
-                  hover:border-text-secondary hover:text-text-primary transition-all duration-150"
-              >
-                Select All
-              </button>
-              <button
-                onclick={clearAllPlayers}
-                class="px-2 py-1 text-xs rounded border border-panel-border text-text-secondary
-                  hover:border-text-secondary hover:text-text-primary transition-all duration-150"
-              >
-                Clear All
-              </button>
-            </div>
-            <div class="flex flex-wrap gap-2">
-              {#each players as player, i}
-                <button
-                  onclick={() => togglePlayer(player)}
-                  class="px-3 py-1.5 text-sm rounded border transition-all duration-150
-                    {selectedPlayers.includes(player)
-                      ? 'border-current bg-current/10 shadow-glow-green'
-                      : 'border-panel-border text-text-dim hover:border-text-secondary'}"
-                  style="color: {selectedPlayers.includes(player) ? playerColors[i] : ''}"
-                >
-                  {player}
-                </button>
-              {/each}
-            </div>
-          </div>
-        </ControlGroup>
-      </div>
-    </div>
+    <FilterControls
+      bind:selectedYear
+      bind:selectedCategory
+      bind:selectedProposer
+      bind:selectedPlayers
+      extraControls={displayToggle}
+    />
 
     <!-- Table -->
     <div class="bg-panel-inset border border-panel-border rounded overflow-hidden shadow-inset-panel">
