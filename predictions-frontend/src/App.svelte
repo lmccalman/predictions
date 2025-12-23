@@ -3,6 +3,7 @@
   import ScoresOverTime from './views/ScoresOverTime.svelte'
   import RawData from './views/RawData.svelte'
   import Calibration from './views/Calibration.svelte'
+  import ConfidenceAnalysis from './views/ConfidenceAnalysis.svelte'
   import PasswordGate from './lib/PasswordGate.svelte'
   import { auth } from './lib/authStore.svelte.js'
 
@@ -10,6 +11,7 @@
     { label: 'Raw Data', component: RawData },
     { label: 'Scores', component: ScoresOverTime },
     { label: 'Calibration', component: Calibration },
+    { label: 'Confidence', component: ConfidenceAnalysis },
   ]
 
   let activeTab = $state(0)
