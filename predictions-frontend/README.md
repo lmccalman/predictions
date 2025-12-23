@@ -26,29 +26,17 @@ The game data is encrypted client-side to protect it even when hosted publicly. 
 2. **Runtime**: Users enter the password, which decrypts the data in the browser
 3. **Security**: Without the correct password, the hosted `.encrypted` file is unreadable
 
-### Setting Up a Password
+### Setting the Password and Encrypting Data
 
-1. **Generate a password hash** by opening `generate-password-hash.html` in a browser
-2. Enter your chosen password and copy the output
-3. Update `src/lib/authStore.svelte.js` with the generated salt and hash:
-
-```javascript
-const PASSWORD_HASH = {
-  salt: 'your-generated-salt',
-  hash: 'your-generated-hash',
-  iterations: 100000,
-}
-```
-
-### Encrypting the Data
-
-After exporting Arrow data from the backend, encrypt it:
+After exporting Arrow data from the backend, run:
 
 ```bash
 npm run encrypt "your-password"
 ```
 
-This reads `public/game_data.arrow` and outputs `public/game_data.encrypted`.
+This single command:
+1. Generates a password hash and updates `src/lib/authStore.svelte.js`
+2. Encrypts `public/game_data.arrow` → `public/game_data.encrypted`
 
 ### Full Build Workflow
 

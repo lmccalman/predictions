@@ -149,10 +149,10 @@ The frontend uses client-side encryption to protect game data even when publicly
 - `generate-password-hash.html`: Browser tool to generate password hash for authStore
 
 **Setting up a new password**:
-1. Open `generate-password-hash.html` in a browser
-2. Enter the password and copy the generated salt/hash
-3. Update `PASSWORD_HASH` in `src/lib/authStore.svelte.js`
-4. Run `npm run encrypt "password"` to encrypt the data file
+```bash
+npm run encrypt "password"
+```
+This single command generates the password hash, updates `authStore.svelte.js`, and encrypts the data file.
 
 **Technical details**:
 - Encryption: AES-256-GCM (authenticated encryption)
