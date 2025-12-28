@@ -143,6 +143,12 @@
       { x: 1, y: 1 }
     ]
 
+    // Points for confidence regions - regions swap at x=0.5
+    // Over-confident: left-above diagonal (x<0.5, y>x) and right-below diagonal (x>0.5, y<x)
+    // Under-confident: left-below diagonal (x<0.5, y<x) and right-above diagonal (x>0.5, y>x)
+    const leftHalf = Array.from({ length: 6 }, (_, i) => ({ x: i / 10, y: i / 10 }))
+    const rightHalf = Array.from({ length: 6 }, (_, i) => ({ x: 0.5 + i / 10, y: 0.5 + i / 10 }))
+
     const plot = Plot.plot({
       width: containerWidth,
       height: plotHeight,
@@ -163,6 +169,75 @@
       },
       color: { domain: players, range: playerColors },
       marks: [
+        // Over-confident: left half, above diagonal (y from diagonal to 1)
+        Plot.areaY(leftHalf, {
+          x: 'x',
+          y1: 'y',
+          y2: 1,
+          fill: '#ef4444',
+          fillOpacity: 0.08
+        }),
+        // Over-confident: right half, below diagonal (y from 0 to diagonal)
+        Plot.areaY(rightHalf, {
+          x: 'x',
+          y1: 0,
+          y2: 'y',
+          fill: '#ef4444',
+          fillOpacity: 0.08
+        }),
+        // Under-confident: left half, below diagonal (y from 0 to diagonal)
+        Plot.areaY(leftHalf, {
+          x: 'x',
+          y1: 0,
+          y2: 'y',
+          fill: '#3b82f6',
+          fillOpacity: 0.08
+        }),
+        // Under-confident: right half, above diagonal (y from diagonal to 1)
+        Plot.areaY(rightHalf, {
+          x: 'x',
+          y1: 'y',
+          y2: 1,
+          fill: '#3b82f6',
+          fillOpacity: 0.08
+        }),
+        // Region labels
+        Plot.text([{ x: 0.8, y: 0.25 }], {
+          x: 'x',
+          y: 'y',
+          text: ['Over-confident'],
+          fill: '#ef4444',
+          fillOpacity: 0.5,
+          fontSize: isMobile ? 11 : 13,
+          fontWeight: 500
+        }),
+        Plot.text([{ x: 0.2, y: 0.75 }], {
+          x: 'x',
+          y: 'y',
+          text: ['Over-confident'],
+          fill: '#ef4444',
+          fillOpacity: 0.5,
+          fontSize: isMobile ? 11 : 13,
+          fontWeight: 500
+        }),
+        Plot.text([{ x: 0.75, y: 0.9 }], {
+          x: 'x',
+          y: 'y',
+          text: ['Under-confident'],
+          fill: '#3b82f6',
+          fillOpacity: 0.5,
+          fontSize: isMobile ? 11 : 13,
+          fontWeight: 500
+        }),
+        Plot.text([{ x: 0.25, y: 0.1 }], {
+          x: 'x',
+          y: 'y',
+          text: ['Under-confident'],
+          fill: '#3b82f6',
+          fillOpacity: 0.5,
+          fontSize: isMobile ? 11 : 13,
+          fontWeight: 500
+        }),
         // Perfect calibration diagonal line
         Plot.line(perfectCalibration, {
           x: 'x',
