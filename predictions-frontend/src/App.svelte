@@ -6,6 +6,7 @@
   import ConfidenceAnalysis from './views/ConfidenceAnalysis.svelte'
   import WinLoss from './views/WinLoss.svelte'
   import Prior from './views/Prior.svelte'
+  import Surprise from './views/Surprise.svelte'
   import PasswordGate from './lib/PasswordGate.svelte'
   import { auth } from './lib/authStore.svelte.js'
 
@@ -16,6 +17,7 @@
     { label: 'Calibration', component: Calibration },
     { label: 'Confidence', component: ConfidenceAnalysis },
     { label: 'Prior', component: Prior },
+    { label: 'Surprise', component: Surprise },
   ]
 
   let activeTab = $state(0)
