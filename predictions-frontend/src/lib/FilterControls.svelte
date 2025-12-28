@@ -7,7 +7,8 @@
     selectedCategory = $bindable(),
     selectedProposer = $bindable(),
     selectedPlayers = $bindable(),
-    extraControls
+    extraControls,
+    hidePlayerFilter = false
   } = $props()
 
   const categories = $derived.by(() => {
@@ -84,39 +85,41 @@
       {/if}
     </div>
 
-    <ControlGroup label="Players">
-      <div class="flex flex-col gap-2">
-        <div class="flex gap-2">
-          <button
-            onclick={selectAllPlayers}
-            class="px-3 py-2 md:px-2 md:py-1 text-xs rounded border border-panel-border text-text-secondary
-              hover:border-text-secondary hover:text-text-primary transition-all duration-150 min-h-[36px] md:min-h-0"
-          >
-            Select All
-          </button>
-          <button
-            onclick={clearAllPlayers}
-            class="px-3 py-2 md:px-2 md:py-1 text-xs rounded border border-panel-border text-text-secondary
-              hover:border-text-secondary hover:text-text-primary transition-all duration-150 min-h-[36px] md:min-h-0"
-          >
-            Clear All
-          </button>
-        </div>
-        <div class="flex flex-wrap gap-2">
-          {#each players as player, i}
+    {#if !hidePlayerFilter}
+      <ControlGroup label="Players">
+        <div class="flex flex-col gap-2">
+          <div class="flex gap-2">
             <button
-              onclick={() => togglePlayer(player)}
-              class="px-3 py-2.5 md:py-1.5 text-sm rounded border transition-all duration-150 min-h-[44px] md:min-h-0
-                {selectedPlayers.includes(player)
-                  ? 'border-current bg-current/10 shadow-glow-green'
-                  : 'border-panel-border text-text-dim hover:border-text-secondary'}"
-              style="color: {selectedPlayers.includes(player) ? playerColors[i] : ''}"
+              onclick={selectAllPlayers}
+              class="px-3 py-2 md:px-2 md:py-1 text-xs rounded border border-panel-border text-text-secondary
+                hover:border-text-secondary hover:text-text-primary transition-all duration-150 min-h-[36px] md:min-h-0"
             >
-              {player}
+              Select All
             </button>
-          {/each}
+            <button
+              onclick={clearAllPlayers}
+              class="px-3 py-2 md:px-2 md:py-1 text-xs rounded border border-panel-border text-text-secondary
+                hover:border-text-secondary hover:text-text-primary transition-all duration-150 min-h-[36px] md:min-h-0"
+            >
+              Clear All
+            </button>
+          </div>
+          <div class="flex flex-wrap gap-2">
+            {#each players as player, i}
+              <button
+                onclick={() => togglePlayer(player)}
+                class="px-3 py-2.5 md:py-1.5 text-sm rounded border transition-all duration-150 min-h-[44px] md:min-h-0
+                  {selectedPlayers.includes(player)
+                    ? 'border-current bg-current/10 shadow-glow-green'
+                    : 'border-panel-border text-text-dim hover:border-text-secondary'}"
+                style="color: {selectedPlayers.includes(player) ? playerColors[i] : ''}"
+              >
+                {player}
+              </button>
+            {/each}
+          </div>
         </div>
-      </div>
-    </ControlGroup>
+      </ControlGroup>
+    {/if}
   </div>
 </div>
