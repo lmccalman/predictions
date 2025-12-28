@@ -58,3 +58,27 @@ export function formatProbability(value) {
   if (value === null || value === undefined || isNaN(value)) return '-'
   return value.toFixed(2)
 }
+
+/**
+ * Calculate win/loss score for a single prediction.
+ * Awards 1 point if prediction is on the correct side of 0.5.
+ * - outcome=false: win if prediction < 0.5
+ * - outcome=true: win if prediction > 0.5
+ * - prediction exactly 0.5 never wins
+ *
+ * @param {number|null|undefined} prediction - Probability assigned (0 to 1)
+ * @param {boolean|null|undefined} outcome - Actual outcome (true/false)
+ * @returns {number|null} - 1 for win, 0 for loss, null if inputs invalid
+ */
+export function calculateWinLoss(prediction, outcome) {
+  if (prediction === null || prediction === undefined || isNaN(prediction)) return null
+  if (outcome === null || outcome === undefined) return null
+
+  if (prediction === 0.5) return 0
+
+  if (outcome) {
+    return prediction > 0.5 ? 1 : 0
+  } else {
+    return prediction < 0.5 ? 1 : 0
+  }
+}

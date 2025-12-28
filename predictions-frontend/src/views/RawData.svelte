@@ -141,7 +141,7 @@
     <div class="text-phosphor-red">Error loading data: {error}</div>
   {:else}
     {#snippet displayToggle()}
-      <DisplayToggle bind:showScores />
+      <DisplayToggle bind:value={showScores} />
     {/snippet}
 
     <FilterControls
