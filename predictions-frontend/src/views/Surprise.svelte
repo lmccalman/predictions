@@ -143,8 +143,8 @@
   }
 
   function getSortIndicator(column) {
-    if (sortColumn !== column) return ''
-    return sortAscending ? ' ↑' : ' ↓'
+    if (sortColumn !== column) return '↕'
+    return sortAscending ? '↑' : '↓'
   }
 
   // Modal plot for prediction distribution
@@ -222,7 +222,7 @@
 <div class="flex flex-col gap-4">
   <h2 class="text-xl font-semibold text-text-primary">Statement Statistics</h2>
   <p class="text-text-secondary text-sm">
-    Statistics computed across all participants. Click column headers to sort.
+    Statistics computed across all participants. Tap the <span class="border-b border-dashed border-text-secondary">underlined columns</span> to sort.
   </p>
 
   {#if loading}
@@ -247,28 +247,32 @@
               <th class="px-2 md:px-3 py-2 text-left text-xs font-semibold uppercase tracking-wider text-text-secondary min-w-[200px] md:min-w-[300px] max-w-[500px]">Statement</th>
               <th class="px-2 md:px-3 py-2 text-center text-xs font-semibold uppercase tracking-wider text-text-secondary min-w-[55px] md:min-w-[60px]">Outcome</th>
               <th
-                class="px-2 md:px-3 py-2 text-center text-xs font-semibold uppercase tracking-wider text-text-secondary min-w-[70px] cursor-pointer hover:text-text-primary transition-colors"
+                class="px-2 md:px-3 py-2 text-center text-xs font-semibold uppercase tracking-wider min-w-[70px] cursor-pointer select-none transition-colors active:bg-panel-border/30 {sortColumn === 'avgProb' ? 'text-text-primary' : 'text-text-secondary hover:text-text-primary'}"
                 onclick={() => toggleSort('avgProb')}
               >
-                Avg P{getSortIndicator('avgProb')}
+                <span class="border-b border-dashed border-current pb-0.5">Avg P</span>
+                <span class="ml-1 {sortColumn === 'avgProb' ? 'text-phosphor-cyan' : 'opacity-40'}">{getSortIndicator('avgProb')}</span>
               </th>
               <th
-                class="px-2 md:px-3 py-2 text-center text-xs font-semibold uppercase tracking-wider text-text-secondary min-w-[70px] cursor-pointer hover:text-text-primary transition-colors"
+                class="px-2 md:px-3 py-2 text-center text-xs font-semibold uppercase tracking-wider min-w-[70px] cursor-pointer select-none transition-colors active:bg-panel-border/30 {sortColumn === 'stdProb' ? 'text-text-primary' : 'text-text-secondary hover:text-text-primary'}"
                 onclick={() => toggleSort('stdProb')}
               >
-                σ(P){getSortIndicator('stdProb')}
+                <span class="border-b border-dashed border-current pb-0.5">σ(P)</span>
+                <span class="ml-1 {sortColumn === 'stdProb' ? 'text-phosphor-cyan' : 'opacity-40'}">{getSortIndicator('stdProb')}</span>
               </th>
               <th
-                class="px-2 md:px-3 py-2 text-center text-xs font-semibold uppercase tracking-wider text-text-secondary min-w-[70px] cursor-pointer hover:text-text-primary transition-colors"
+                class="px-2 md:px-3 py-2 text-center text-xs font-semibold uppercase tracking-wider min-w-[70px] cursor-pointer select-none transition-colors active:bg-panel-border/30 {sortColumn === 'avgScore' ? 'text-text-primary' : 'text-text-secondary hover:text-text-primary'}"
                 onclick={() => toggleSort('avgScore')}
               >
-                Avg Score{getSortIndicator('avgScore')}
+                <span class="border-b border-dashed border-current pb-0.5">Avg Score</span>
+                <span class="ml-1 {sortColumn === 'avgScore' ? 'text-phosphor-cyan' : 'opacity-40'}">{getSortIndicator('avgScore')}</span>
               </th>
               <th
-                class="px-2 md:px-3 py-2 text-center text-xs font-semibold uppercase tracking-wider text-text-secondary min-w-[70px] cursor-pointer hover:text-text-primary transition-colors"
+                class="px-2 md:px-3 py-2 text-center text-xs font-semibold uppercase tracking-wider min-w-[70px] cursor-pointer select-none transition-colors active:bg-panel-border/30 {sortColumn === 'stdScore' ? 'text-text-primary' : 'text-text-secondary hover:text-text-primary'}"
                 onclick={() => toggleSort('stdScore')}
               >
-                σ(Score){getSortIndicator('stdScore')}
+                <span class="border-b border-dashed border-current pb-0.5">σ(Score)</span>
+                <span class="ml-1 {sortColumn === 'stdScore' ? 'text-phosphor-cyan' : 'opacity-40'}">{getSortIndicator('stdScore')}</span>
               </th>
             </tr>
           </thead>
