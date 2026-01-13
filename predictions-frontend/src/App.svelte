@@ -1,5 +1,6 @@
 <script>
   import TabBar from './lib/TabBar.svelte'
+  import Rules from './views/Rules.svelte'
   import ScoresOverTime from './views/ScoresOverTime.svelte'
   import RawData from './views/RawData.svelte'
   import Calibration from './views/Calibration.svelte'
@@ -11,6 +12,7 @@
   import { auth } from './lib/authStore.svelte.js'
 
   const tabs = [
+    { label: 'Rules', component: Rules },
     { label: 'Raw Data', component: RawData },
     { label: 'Scores', component: ScoresOverTime },
     { label: 'Win/Loss', component: WinLoss },

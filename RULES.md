@@ -158,10 +158,12 @@ of possible events is just 'does happen' or 'doesn't happen'.*
 Say that the first event happens, but the second does not. Then my likelihood
 score is:
 
+```
 Likelihood = P(A and NOT B)
- = P(A) * P(NOT B)
- = 0.8 * 0.1
- = 0.08.
+           = P(A) * P(NOT B)
+           = 0.8 * 0.1
+           = 0.08
+```
 
 Though it's possible to get lucky for a single event or two, over time, the
 model of the world which captures the *TRUE* probabilities of events will always
@@ -184,15 +186,19 @@ To model non-independent events, we must assign probabilities to all
 must sum up to one. For the example above, this could look like the following
 table:
 
-P(A and B): 0.8
-P(A and NOT B): 0.05
-P(NOT A and B): 0.05
-P(NOT A and NOT B): 0.1
+```
+P(A and B)         = 0.80
+P(A and NOT B)     = 0.05
+P(NOT A and B)     = 0.05
+P(NOT A and NOT B) = 0.10
+```
 
-Then the likelihood would be 
+Then the likelihood would be:
 
+```
 Likelihood = P(A and NOT B)
-    = 0.05
+           = 0.05
+```
 
 Players may, OPTIONALLY, choose groups of events over which to define these
 kind of combinatorial probabilities. However, note a couple of things:
@@ -218,8 +224,10 @@ will maintain that ordering when ordered by log-likelihood. This transformation
 has the advantage of making the numbers much more sensibly sized, but it also
 turns the multiplication into an addition:
 
-Likelihood = P(A)*P(B)
+```
+Likelihood     = P(A) * P(B)
 Log-Likelihood = Log(P(A)) + Log(P(B))
+```
 
 Now we can compute a score for each prediction and just add them up! We
 previously showed that a single probability 0 in the likelihood means the total
@@ -246,7 +254,9 @@ score that a "naive" prediction would get: Here a naive prediction is the one
 that implies no knowledge about the outcome, P = 0.5. So then for each
 prediction:
 
+```
 Standardised log-likelihood = Log(P(A)) - Log(0.5)
+```
 
 This means that scores above zero imply you've done better than someone
 guessing 0.5, and scores below zero imply the opposite.
