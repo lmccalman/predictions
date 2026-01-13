@@ -12,12 +12,11 @@ can occur earlier than the end of the year, but we need to be able to make
 a call on them by that point.
 
 Once we have collated the statements, each person assigns every statement
-(their's and other players') a probability: how likely they think the statement
+(theirs and other players') a probability: how likely they think the statement
 is to come true.
 
-Then, on Christmas Eeve, we'll review all of the events, score everyone's
-predictions, and declare a winner. 
-next year)!
+Then, on Christmas Eve, we'll review all of the events, score everyone's
+predictions, and declare a winner.
 
 The scoring approach judges two aspects of our predictions:
 
@@ -33,17 +32,17 @@ However, would you drive the truck over the bridge?
 
 ## The process
 
-1. *Early Jan*: Everyone comes up with 5 statements
-2. Mid Jan: statements must bu submitted (without probabilities) by
+1. Early Jan: Everyone comes up with 5 statements
+2. Mid Jan: Statements must be submitted (without probabilities) by
    a mutually-agreed date. These will be collated and a spreadsheet sent out
-   to eveyone with all the statements. 
-3. Late Jan: Everyone works on assigning probabilities to all the predicitons
-4. End Jan: probabilities due for submission on a mutually-agreed date
-4. Through the year: The Signal chat is active with discussion of statements as
+   to everyone with all the statements.
+3. Late Jan: Everyone works on assigning probabilities to all the predictions
+4. End Jan: Probabilities due for submission on a mutually-agreed date
+5. Through the year: The Signal chat is active with discussion of statements as
    they resolve or don't
 6. 15 Dec: The last date for predictions to be resolved, to give the
    game-runners some time to collate results
-7. Christmas eve: Winner annnounced!
+7. Christmas Eve: Winner announced!
 
 ## Coming up with statements
 
@@ -57,7 +56,7 @@ However, would you drive the truck over the bridge?
 
 - It should be clear how to *measure* the truth of a statement, with as little
   judgement as practical:
-    Yes: An earthquake in japan will be measured with Magntitude 9
+    Yes: An earthquake in Japan will be measured with Magnitude 9
     Yes: The Guardian will report that Taiwan has been "invaded" by China.
     No: There will be a catastrophic earthquake in Japan
     No: China will attack Taiwan
@@ -65,7 +64,7 @@ However, would you drive the truck over the bridge?
 ## Resolving statements
 
 Statements are generally resolved by consensus, though the CEO (currently
-Bruce) has final say. When the truth of a statement turns out to be ambigious
+Bruce) has final say. When the truth of a statement turns out to be ambiguous
 or players interpreted it differently when assigning probabilities, it may be
 'zeroed-out' (not counted in the scoring).
 
@@ -109,7 +108,7 @@ Under-confidence is useless, but overconfidence is dangerous. There are
 a plethora of pundits making predictions about what will happen in the future,
 but these pundits are never asked to assign confidence to their predictions,
 and are never judged based on the calibration of that confidence. The scoring
-used in the prediction game is one way to judge the quality of pundentry.
+used in the prediction game is one way to judge the quality of punditry.
 
 ### Deriving a scoring system
 
@@ -162,7 +161,7 @@ Likelihood = P(A and NOT B)
  = 0.08.
 
 Though it's possible to get lucky for a single event or two, over time, the
-model of the world which captures the *TRUE* probabilites of events will always
+model of the world which captures the *TRUE* probabilities of events will always
 have the highest likelihood score.
 
 
@@ -173,12 +172,12 @@ all X.
 
 #### Note on independence assumption
 You may notice that substituting P(A) * P(NOT B) for P(A and NOT B) requires
-assuming that these events are *indpendent*. For two independent events,
+assuming that these events are *independent*. For two independent events,
 knowing the outcome of one tells us nothing about the probability of the other.
 Most statements made in this game are NOT independent, however. 
 
 To model non-independent events, we must assign probabilities to all
-*combinations* of events, still while respecting the idea that all possibilites
+*combinations* of events, still while respecting the idea that all possibilities
 must sum up to one. For the example above, this could look like the following
 table:
 
@@ -211,35 +210,35 @@ problems.
 
 To solve problem 1, we take the log of the likelihood. This transformation
 doesn't affect the game, in the sense that players ordered by likelihood score
-will maintain that ordering when ordered by log-liklihood. This transformation
+will maintain that ordering when ordered by log-likelihood. This transformation
 has the advantage of making the numbers much more sensibly sized, but it also
 turns the multiplication into an addition:
 
-Liklihood = P(A)*P(B)
-Log-Liklihood = Log(P(A)) + Log(P(B))
+Likelihood = P(A)*P(B)
+Log-Likelihood = Log(P(A)) + Log(P(B))
 
 Now we can compute a score for each prediction and just add them up! We
 previously showed that a single probability 0 in the likelihood means the total
 likelihood will be zero regardless of probabilities for other events. The
-log-liklihood maintains this same property because log(0) = negative infinity,
+log-likelihood maintains this same property because log(0) = negative infinity,
 which always remains negative infinity regardless of what gets added to it.
 
-For those interested, the log-likehood also has the property of measuring the
+For those interested, the log-likelihood also has the property of measuring the
 (negative) self-information, "surprisal" or Shannon information for the event
 under the provided probability distribution. For this reason, we use base-2
 logarithms so that this quantity is measured in bits.
 
 The "Surprisal" interpretation also provides some intuition for why the
-log-likelhood is bounded above (ie there's a max score) but not below (ie you
-can get negative inifinity). Seeing an event with probability 1 occur isn't
+log-likelihood is bounded above (ie there's a max score) but not below (ie you
+can get negative infinity). Seeing an event with probability 1 occur isn't
 surprising at all, but seeing an event with probability 0 occur is *infinitely*
 surprising.
 
-### Standardised log-likehood
+### Standardised log-likelihood
 
-Logs are also pretty arbitary numbers. (What does a score of -1.2 mean?) To
+Logs are also pretty arbitrary numbers. (What does a score of -1.2 mean?) To
 address this, we *standardise* the score of each prediction by subtracting the
-score that a "naive" prediction would get: Here a naive prediciton is the one
+score that a "naive" prediction would get: Here a naive prediction is the one
 that implies no knowledge about the outcome, P = 0.5. So then for each
 prediction:
 
@@ -251,7 +250,7 @@ guessing 0.5, and scores below zero imply the opposite.
 ## Advice for coming up with good statements
 
 The unstated secondary purpose of the game is to encourage players to engage
-with eachother's interests. So don't be afraid to make a prediction in an
+with each other's interests. So don't be afraid to make a prediction in an
 obscure field that you have interest in -- hopefully other players will do some
 research.
 
@@ -264,7 +263,7 @@ are extremely certain to occur or to not occur.
 For each prediction, the minimum possible score is negative infinity. The
 maximum possible score is 1.
 
-If you assign 0 probability to an event and it doesn't happen, the data can
+If you assign 0 probability to an event and it does happen, the data can
 never be produced by your model and you will automatically get an overall score
 for the year of negative infinity. It doesn't matter how good your other
 predictions are. This is asymmetric -- if you assign 1 to an event and it does
