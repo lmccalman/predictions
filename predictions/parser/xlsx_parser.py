@@ -588,7 +588,7 @@ def extract_predictions_2025(
     wb.close()
 
     # Exclude non-participant sheets
-    excluded_sheets = {"Statements", "Summary"}
+    excluded_sheets = {"Statements", "Summary", "Notes"}
     participant_sheets = [
         name for name in sheet_names if name not in excluded_sheets
     ]
