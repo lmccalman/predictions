@@ -27,6 +27,19 @@
     })).filter(d => d.prediction != null)
   })
 
+  // Predictions sorted by probability (lowest to highest) for modal display
+  const sortedPredictions = $derived.by(() => {
+    if (!selectedRow) return []
+    return players
+      .map((player, i) => ({
+        player,
+        prediction: selectedRow[player],
+        colorIndex: i
+      }))
+      .filter(d => d.prediction != null)
+      .sort((a, b) => a.prediction - b.prediction)
+  })
+
   // Render the prediction distribution plot
   $effect(() => {
     if (!plotContainer || !selectedRow || predictionData.length === 0) return
@@ -253,11 +266,10 @@
           <div>
             <div class="text-xs text-text-dim uppercase tracking-wider mb-2">Predictions</div>
             <div class="flex flex-col gap-2">
-              {#each players as player, i}
-                {@const prediction = selectedRow[player]}
+              {#each sortedPredictions as { player, prediction, colorIndex }}
                 {@const score = calculateScore(prediction, selectedRow.outcome)}
                 <div class="flex items-center justify-between py-2 px-3 bg-panel-inset rounded border border-panel-border/50">
-                  <span class="font-medium" style="color: {playerColors[i]}">{player}</span>
+                  <span class="font-medium" style="color: {playerColors[colorIndex]}">{player}</span>
                   <div class="flex items-center gap-4">
                     <span class="font-mono text-text-secondary">{formatProbability(prediction)}</span>
                     {#if selectedRow.outcome !== null}
