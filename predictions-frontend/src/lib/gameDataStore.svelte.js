@@ -1,9 +1,32 @@
 import * as aq from 'arquero'
 import { decrypt } from '../utils/crypto.js'
 
-// Player configuration
-export const players = ['Andrew', 'Bruce', 'Christine', 'David', 'Eileen', 'Gael', 'Iain', 'Jac', 'James', 'Kate', 'Lachy', 'Pete', 'Rohan']
-export const playerColors = ['#4ade80', '#fbbf24', '#22d3ee', '#f87171', '#60a5fa', '#a78bfa', '#fb923c', '#e879f9', '#4ade80', '#fbbf24', '#22d3ee', '#f87171', '#60a5fa']
+// Player configuration - all players across all years (sorted alphabetically)
+// Players: Andrew, Bruce, Christine, Claude (2026+), David, Eileen, Gael, Iain, Jac,
+//          James F (2026+), James M (was "James"), Kate, Lachy, Leslie (2026+), Pete (2022-2024), Rohan
+export const players = [
+  'Andrew', 'Bruce', 'Christine', 'Claude', 'David', 'Eileen',
+  'Gael', 'Iain', 'Jac', 'James F', 'James M', 'Kate', 'Lachy',
+  'Leslie', 'Pete', 'Rohan'
+]
+export const playerColors = [
+  '#4ade80', // Andrew - green
+  '#fbbf24', // Bruce - amber
+  '#22d3ee', // Christine - cyan
+  '#c084fc', // Claude - purple
+  '#f87171', // David - red
+  '#60a5fa', // Eileen - blue
+  '#a78bfa', // Gael - violet
+  '#fb923c', // Iain - orange
+  '#e879f9', // Jac - fuchsia
+  '#38bdf8', // James F - sky
+  '#2dd4bf', // James M - teal
+  '#facc15', // Kate - yellow
+  '#818cf8', // Lachy - indigo
+  '#34d399', // Leslie - emerald
+  '#94a3b8', // Pete - slate (historical only)
+  '#fb7185', // Rohan - rose
+]
 
 // Global data - populated when loadData() completes
 export let gameData = null

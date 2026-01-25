@@ -235,6 +235,8 @@ def normalize_participant_name(name: str) -> str:
         # Christine variants
         "chris": "Christine",
         "christine": "Christine",
+        # James renamed to James M for disambiguation with James F (2026+)
+        "james": "James M",
     }
 
     # Look up the canonical name (case-insensitive)
