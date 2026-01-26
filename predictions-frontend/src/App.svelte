@@ -3,6 +3,7 @@
   import Rules from './views/Rules.svelte'
   import ScoresOverTime from './views/ScoresOverTime.svelte'
   import RawData from './views/RawData.svelte'
+  import Range from './views/Range.svelte'
   import Calibration from './views/Calibration.svelte'
   import ConfidenceAnalysis from './views/ConfidenceAnalysis.svelte'
   import WinLoss from './views/WinLoss.svelte'
@@ -14,6 +15,7 @@
   const tabs = [
     { label: 'Rules', component: Rules },
     { label: 'Raw Data', component: RawData },
+    { label: 'Range', component: Range },
     { label: 'Scores', component: ScoresOverTime },
     { label: 'Win/Loss', component: WinLoss },
     { label: 'Calibration', component: Calibration },
